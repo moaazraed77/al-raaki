@@ -1,0 +1,67 @@
+nav{
+    direction: rtl;
+}
+.nav-bg{
+    background-image: url(/assets/bg2.png) !important;
+}
+.logo{
+    height: 150px;
+    width: 100%;
+}
+.temporarylogo{
+    width: 70%;
+}
+button:focus:not(:focus-visible) {
+    box-shadow: none;
+}
+.div-icons{
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+.bi{
+    font-size: 35px;
+    margin: 5px 10px;
+    color: #009b67;
+}
+.bi:hover{
+    color: mediumaquamarine;
+}
+.nav-link.active{
+    font-weight: 700;
+    color: white;
+}
+.nav-link{
+    font-family: 'Noto Kufi Arabic', sans-serif;
+    color: white;
+}
+[type=button]:not(:disabled) {
+    background-color: rgb(217 255 231 / 23%);
+}
+span{
+    // change toggeller span color
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba( 255, 255, 255)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+@media screen and (max-width:600px) {
+    .logo{
+        height: 130px;
+    }
+    .div-icons{
+        width: 100%;
+        padding-top: 0%;
+    }
+    .bi{
+        margin: 0px 10px;
+        font-size: 30px;
+    }
+    .temporarylogo{
+        width: auto;
+        height: 90px;
+    }
+    .temporarylogoDiv{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+}
