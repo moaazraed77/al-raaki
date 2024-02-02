@@ -11,6 +11,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { VisitsComponent } from './components/visits/visits.component';
 import { CallUsComponent } from './components/call-us/call-us.component';
 import { FatawyComponent } from './components/fatawy/fatawy.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { FatawyComponent } from './components/fatawy/fatawy.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {provide : LocationStrategy,useClass:HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
