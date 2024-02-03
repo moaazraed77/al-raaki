@@ -6,7 +6,7 @@ import { FatawyComponent } from './components/fatawy/fatawy.component';
 import { ProductsComponent } from './components/products/products.component';
 import { SoundsComponent } from './components/sounds/sounds.component';
 import { VisitsComponent } from './components/visits/visits.component';
-import { AboutUsComponent } from './about-us/about-us.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},

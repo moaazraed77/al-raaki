@@ -1,0 +1,15 @@
+.special-title{
+    font-size: 35px;
+    font-family: unset;
+}
+.title{
+    color: #007f6d;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: sans-serif;
+}
+@media screen and (max-width:700px) {
+    .special-title{
+        font-size: 30px;
+    }
+}

@@ -1,9 +1,11 @@
+
 .carousel{
     padding: 0;
 }
 .carousel-item img{
     height: 200px;
-    border-radius: 5px;
+    border-radius: 4%;
+    padding: 0px 2.5%;
 }
 .carousel-indicators{
     bottom: -40px;
@@ -17,6 +19,7 @@
 .card{
     padding: 15px;
     border: none;
+    background-color: transparent;
 }
 .card img{
     height: 250px;

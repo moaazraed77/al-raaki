@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  // upload(event:any){
+  //   const files=event.target.files;
+  //     let loader=new FileReader();
+  //     loader.readAsDataURL(event.target.files[0])
+  //     loader.onload=(event)=>{
+  //       console.log(event.target?.result);  // show the photos before uploading
+  //     }
+  //   }
 
 }
