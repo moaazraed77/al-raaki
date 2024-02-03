@@ -12,6 +12,7 @@ import { VisitsComponent } from './components/visits/visits.component';
 import { CallUsComponent } from './components/call-us/call-us.component';
 import { FatawyComponent } from './components/fatawy/fatawy.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     ProductsComponent,
     VisitsComponent,
     CallUsComponent,
-    FatawyComponent
+    FatawyComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,
