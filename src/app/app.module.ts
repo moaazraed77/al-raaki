@@ -13,6 +13,7 @@ import { CallUsComponent } from './components/call-us/call-us.component';
 import { FatawyComponent } from './components/fatawy/fatawy.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
   ],
   imports: [
     BrowserModule,
+    AdminModule,
     AppRoutingModule
   ],
   providers: [
