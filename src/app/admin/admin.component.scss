@@ -1,0 +1,47 @@
+.dashboard-view{
+    height: 100vh;
+    display: flex;
+    padding: 0%;
+    margin: 0%;
+    overflow-y: scroll;
+}
+.sidebar{
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    width: 20%;
+    background-color: #004b77;
+    height: 100%;
+}
+.links-div{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.links-div div{
+    width: 100%;
+    padding: 2px 15px;
+}
+.links-div div a{
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    margin: 8px 0px ;
+    color: white;
+    background-color: #9b9b9b85;
+    padding: 8px 15px;
+    border-radius: 7px;
+    font-family: 'Noto Kufi Arabic';
+}
+.links-div div a:hover{
+    background-color: rgb(183 129 3 / 58%);
+}
+.content{
+    width: 80%;
+    background-color: #cdcdfd6b;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    right: 20%;
+    overflow-y: scroll;
+}

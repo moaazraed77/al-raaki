@@ -1,1 +1,18 @@
-<p>admin works!</p>
+<div class="col-12 dashboard-view">
+    <div class="sidebar">
+        <div class="links-div ">
+            <div>
+                <a routerLink="home-dash"> الصفحة الرئيسية</a>
+                <a routerLink="about-us-dash"> عن الراقي </a>
+                <a routerLink="fatawy-dash"> فتاوي</a>
+                <a routerLink="sounds-dash"> صوتيات</a>
+                <a routerLink="products-dash"> المنتجات</a>
+                <a routerLink="visits-dash"> زيارتنا</a>
+                <a routerLink="call-us-dash"> اتصل بنا</a>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <router-outlet class="content-data"></router-outlet>
+    </div>
+</div>

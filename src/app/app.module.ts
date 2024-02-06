@@ -30,8 +30,8 @@ import { AdminModule } from './admin/admin.module';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     AdminModule,
-    AppRoutingModule
   ],
   providers: [
     {provide : LocationStrategy,useClass:HashLocationStrategy}

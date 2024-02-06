@@ -1,6 +1,7 @@
 
 <div class="col-12 d-flex justify-content-center align-items-center dashlogin pt-5">
     <form class="col-lg-4 card p-3" [formGroup]="login" (submit)="submit()">
+        <img src="assets/login1.png" alt="" width="100%" height="180px" style="border-radius: 7px; margin-bottom: 10px;">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label" >Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" aria-describedby="emailHelp">
@@ -9,9 +10,7 @@
           <label for="exampleInputPassword1" class="form-label">Password</label>
           <input type="password" class="form-control" id="exampleInputPassword1" formControlName="pass">
         </div>
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary">login</button>
-        </div>
+          <button type="submit" class="btn btn-dark">login</button>
         <div class="col-12">
           <p class="alert alert-danger" *ngIf="error"> invalid data for login</p>
         </div>

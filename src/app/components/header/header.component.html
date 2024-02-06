@@ -19,7 +19,7 @@
 
 <nav class="col-12 navbar navbar-expand-lg bg-body-tertiary nav-bg">
     <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler Toggle-style" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -27,23 +27,43 @@
           <li class="nav-item">
             <a class="nav-link" aria-current="page" routerLink="" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}">الرئيسية</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="about-us"  [routerLinkActive]="'active'">عن الراقي </a>
+          <!-- display desktop -->
+          <li class="nav-item desktop-view">
+            <a class="nav-link" routerLink="about-us" [routerLinkActive]="'active'">عن الراقي </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item desktop-view">
             <a class="nav-link" routerLink="fatawy" [routerLinkActive]="'active'">فتاوي  </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item desktop-view">
             <a class="nav-link " routerLink="sounds" [routerLinkActive]="'active'">صوتيات </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item desktop-view">
             <a class="nav-link" routerLink="products" [routerLinkActive]="'active'">المنتجات   </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item desktop-view">
             <a class="nav-link " routerLink="visits" [routerLinkActive]="'active'">زياراتنا  </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item desktop-view">
             <a class="nav-link " routerLink="call-us" [routerLinkActive]="'active'">اتصل بنا </a>
+          </li>
+          <!-- display mobile -->
+          <li class="nav-item mobile-view">
+            <a class="nav-link" routerLink="about-us" [routerLinkActive]="'active'" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">عن الراقي </a>
+          </li>
+          <li class="nav-item mobile-view">
+            <a class="nav-link" routerLink="fatawy" [routerLinkActive]="'active'" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">فتاوي  </a>
+          </li>
+          <li class="nav-item mobile-view">
+            <a class="nav-link " routerLink="sounds" [routerLinkActive]="'active'" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">صوتيات </a>
+          </li>
+          <li class="nav-item mobile-view">
+            <a class="nav-link" routerLink="products" [routerLinkActive]="'active'" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">المنتجات   </a>
+          </li>
+          <li class="nav-item mobile-view">
+            <a class="nav-link " routerLink="visits" [routerLinkActive]="'active'" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">زياراتنا  </a>
+          </li>
+          <li class="nav-item mobile-view">
+            <a class="nav-link " routerLink="call-us" [routerLinkActive]="'active'" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">اتصل بنا </a>
           </li>
         </ul>
       </div>
