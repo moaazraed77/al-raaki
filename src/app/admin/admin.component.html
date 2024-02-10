@@ -1,14 +1,15 @@
 <div class="col-12 dashboard-view">
     <div class="sidebar">
-        <div class="links-div ">
+        <div class="links-div">
             <div>
-                <a routerLink="home-dash"> الصفحة الرئيسية</a>
-                <a routerLink="about-us-dash"> عن الراقي </a>
-                <a routerLink="fatawy-dash"> فتاوي</a>
-                <a routerLink="sounds-dash"> صوتيات</a>
-                <a routerLink="products-dash"> المنتجات</a>
-                <a routerLink="visits-dash"> زيارتنا</a>
-                <a routerLink="call-us-dash"> اتصل بنا</a>
+                <img src="assets/logo.png" alt="" class="img-logo">
+                <a routerLink="home-dash" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}"> الصفحة الرئيسية</a>
+                <a routerLink="about-us-dash" [routerLinkActive]="'active'"> عن الراقي </a>
+                <a routerLink="fatawy-dash" [routerLinkActive]="'active'"> فتاوي</a>
+                <a routerLink="sounds-dash" [routerLinkActive]="'active'"> صوتيات</a>
+                <a routerLink="products-dash" [routerLinkActive]="'active'"> المنتجات</a>
+                <a routerLink="visits-dash" [routerLinkActive]="'active'"> زيارتنا</a>
+                <a routerLink="call-us-dash" [routerLinkActive]="'active'"> اتصل بنا</a>
             </div>
         </div>
     </div>

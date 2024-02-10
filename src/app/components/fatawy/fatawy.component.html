@@ -11,21 +11,24 @@
             <tbody>
               <tr>
                 <th scope="row">1</th>
-                <td>فضل يوم عرفة</td>
-                <td><i class="bi bi-play-circle-fill"></i></td>
-                <td><i class="bi bi-file-earmark-arrow-down"></i></td>
+                <td>مشاري راشد</td>
+                <td><i class="bi bi-play-circle-fill" (click)=" play='item-1'" [ngClass]="[{'none':play=='item-1'}]" *ngIf="play!='item-1'"></i>
+                 <audio src="assets/a.mp3" controls [autoplay]=" play=='item-1'" *ngIf="play=='item-1'"></audio></td>
+                <td><a href="assets/a.mp3" download="quran"><i class="bi bi-file-earmark-arrow-down"></i></a></td>
               </tr>
               <tr>
                 <th scope="row">2</th>
-                <td>الأعمال المشروعه في يوم التروية </td>
-                <td><i class="bi bi-play-circle-fill"></i></td>
-                <td><i class="bi bi-file-earmark-arrow-down"></i></td>
+                <td>سعد الغامدي</td>
+                <td><i class="bi bi-play-circle-fill" (click)="play='item-2'" [ngClass]="[{'none':play=='item-2'}]" *ngIf="play!='item-2'"></i>
+                 <audio src="assets/b.mp3" controls [autoplay]=" play=='item-2'" *ngIf="play=='item-2'"></audio></td>
+                <td><a href="assets/b.mp3" download="quran"><i class="bi bi-file-earmark-arrow-down"></i></a></td>
               </tr>
               <tr>
                 <th scope="row">3</th>
-                <td>النقص في الحج بسبب الجهل والعجلة</td>
-                <td><i class="bi bi-play-circle-fill"></i></td>
-                <td><i class="bi bi-file-earmark-arrow-down"></i></td>
+                <td>هزاع البلوشي</td>
+                <td><i class="bi bi-play-circle-fill" (click)="play='item-3'" [ngClass]="[{'none':play=='item-3'}]" *ngIf="play!='item-3'"></i>
+                 <audio src="assets/c.mp3" controls [autoplay]=" play=='item-3'" *ngIf="play=='item-3'"></audio></td>
+                <td><a href="assets/c.mp3" download="quran"><i class="bi bi-file-earmark-arrow-down"></i></a></td>
               </tr>
             </tbody>
     </table>

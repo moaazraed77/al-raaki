@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-fatawy',
@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./fatawy.component.scss']
 })
 export class FatawyComponent {
+
+  play:string=""
 
 }

@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { SoundsComponent } from './sounds/sounds.component';
 import { VisitsComponent } from './visits/visits.component';
+import { SafePipe } from '../Modal/pipes/safe.pipe';
 
 
 @NgModule({
@@ -24,13 +25,14 @@ import { VisitsComponent } from './visits/visits.component';
     HomeComponent,
     ProductsComponent,
     SoundsComponent,
-    VisitsComponent
+    VisitsComponent,
+    SafePipe
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class AdminModule { }

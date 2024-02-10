@@ -11,6 +11,15 @@
     font-weight: 700;
     font-family: sans-serif;
 }
+.image-dash-view{
+    height: 82px;
+    width: 95px;
+    border-radius: 10px;
+}
+.deleted-Image{
+    max-width: 80%;
+    max-height: 350px;
+}
 @media screen and (max-width:700px) {
     .container{
         padding: 2px 10px;

@@ -14,6 +14,9 @@ import { FatawyComponent } from './components/fatawy/fatawy.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AdminModule } from './admin/admin.module';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SafePipe } from './Modal/pipes/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -26,12 +29,17 @@ import { AdminModule } from './admin/admin.module';
     VisitsComponent,
     CallUsComponent,
     FatawyComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    // SafePipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     AdminModule,
+    AppRoutingModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      positionClass:"toast-top-left"
+    }), // ToastrModule added
   ],
   providers: [
     {provide : LocationStrategy,useClass:HashLocationStrategy}
