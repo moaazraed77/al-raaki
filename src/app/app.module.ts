@@ -16,7 +16,13 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AdminModule } from './admin/admin.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SafePipe } from './Modal/pipes/safe.pipe';
+import { HttpClientModule } from '@angular/common/http';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { provideStorage, getStorage } from '@angular/fire/storage'; // write this special code for upload img 
+import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat'; // write this special code for upload img 
 
 @NgModule({
   declarations: [
@@ -30,7 +36,7 @@ import { SafePipe } from './Modal/pipes/safe.pipe';
     CallUsComponent,
     FatawyComponent,
     AboutUsComponent,
-    // SafePipe
+    // SafePipe,
   ],
   imports: [
     BrowserModule,
@@ -38,11 +44,14 @@ import { SafePipe } from './Modal/pipes/safe.pipe';
     AppRoutingModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
-      positionClass:"toast-top-left"
+      positionClass: "toast-top-left"
     }), // ToastrModule added
+    HttpClientModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideDatabase(() => getDatabase()), provideStorage(() => getStorage())
   ],
   providers: [
-    {provide : LocationStrategy,useClass:HashLocationStrategy}
+    // write this special code for upload img 
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })

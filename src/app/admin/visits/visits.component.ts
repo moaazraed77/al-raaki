@@ -1,6 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { images } from 'src/app/Modal/interfaces/images.interface';
+import { VisitsService } from 'src/app/services/visits.service';
 
 @Component({
   selector: 'app-visits',
@@ -10,16 +14,15 @@ import { ToastrService } from 'ngx-toastr';
 export class VisitsComponent {
 
   controlView: string = "add-data";
+  editObjectPromo: any = "";
+  deleteObjectPromo: any = "";
+  imgPromoURL: any = "";
+  imageFile:any={}
+  visitsList: any[] = [];
 
-  uploading: any = "";
-
-  editImageURL: string = ""
-
-  deleteImageURL: any = ""
-
-  visitsList: any[] = [{ id: 1, img: 'assets/1.jpg' }, { id: 1, img: 'assets/3.jpg' }, { id: 1, img: 'assets/2.jpg' }];
-
-  constructor(private toastr: ToastrService, private formBuilder: FormBuilder) { }
+  constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private http: HttpClient,
+    private visitsServ: VisitsService, private firestorage: AngularFireStorage) {
+  }
 
   visit = this.formBuilder.group({
     id: [new Date().getTime()],
@@ -28,33 +31,84 @@ export class VisitsComponent {
 
   dataControl() {
     if (this.controlView == "add-data") {
-      this.editImageURL = ""
-      this.uploading = ""
+      this.editObjectPromo = ""
+      this.imgPromoURL = ""
     }
+  }
+
+  getVisitsData() {
+    this.visitsList = [];
+    this.visitsServ.getDataAPI().subscribe({
+      next: data => {
+        for (const key in data) {
+          this.visitsList.push(data[key])
+        }
+        this.controlView = 'show-data'
+      },
+      error: () => { this.toastr.error("Error Connection ", " Data Incompleted"); },
+      complete: () => { }
+    })
   }
 
   // promo upload to show which files uploaded and the size of each photo
   upload(event: any) {
-    const files = event.target.files[0];
+    this.imageFile = event.target.files[0];
     let loader = new FileReader();
     if (event.target.files[0].size / 1024 <= 30) {
       loader.readAsDataURL(event.target.files[0])
       loader.onload = (event) => {
-        this.uploading = event.target?.result;  // show the photos before uploading
+        this.imgPromoURL = event.target?.result;  // show the photos before uploading
       }
     } else {
       this.toastr.error(" 30 kb  حجم الصورة اكبر من ")
     }
   }
 
+  // submit  Data on firebase 
+  async submitImage() {
+    this.toastr.info("يتم رفع الصورة حاليا","يرجي الانتظار")
+    await this.uploadFile(this.imageFile)  // wait until file is uploaded
+    if (this.imgPromoURL && this.controlView === "add-data") {
+      this.visitsServ.postVisitData(this.visit.value!)
+      this.dataControl()
+    } else if (this.controlView === "edit-data") {
+      this.visitsServ.editData(this.editObjectPromo, this.visit.value)
+    }
+  }
+
+  // -------------- funcion to upload img file and get image url ---- on firebase --------------
+  async uploadFile(file: any) {
+    if (file) {
+      const path = `alraaki/${new Date().getTime()}${file.name}`; // we make name of file in firebase storage 
+      const uploadTask = await this.firestorage.upload(path, file);
+        this.visit.patchValue({
+          id: new Date().getTime(),
+          img: await uploadTask.ref.getDownloadURL()
+        })
+      }
+    }
+
   edit(item: any) {
-    this.editImageURL = item.img
+    this.editObjectPromo = item;
     this.controlView = "edit-data";
-    this.uploading = ""
+    this.imgPromoURL = ""
   }
 
-  set_delete(item: any) {
-
+  set_delete(item: images) {
+    this.visitsServ.getDataAPI().subscribe({
+      next: data => {
+        for (const key in data) {
+          if (item.id == data[key].id) {
+            this.http.delete(`${this.visitsServ.url}/visits/${key}.json`).subscribe(() => {
+              this.toastr.success("تم حذف الصورة ");
+                this.getVisitsData()
+            });
+            break;
+          }
+        }
+      },
+    })
   }
+
 
 }

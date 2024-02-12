@@ -1,20 +1,6 @@
 <div class="container d-flex justify-content-center flex-wrap">
-    <div class="col-lg-4 col-sm-6 col-sm-4 text-center p-3">
-        <img src="assets/1.jpg" class="rounded-img" alt="">
+    <div class="col-lg-4 col-sm-6 col-sm-4 text-center p-3" *ngFor="let item of dataList">
+        <img [src]="item.img" class="rounded-img" alt="">
     </div>
-    <div class="col-lg-4 col-sm-6 col-sm-4 text-center p-3">
-        <img src="assets/2.jpg" class="rounded-img" alt="">
-    </div>
-    <div class="col-lg-4 col-sm-6 col-sm-4 text-center p-3">
-        <img src="assets/3.jpg" class="rounded-img" alt="">
-    </div>
-    <div class="col-lg-4 col-sm-6 col-sm-4 text-center p-3">
-        <img src="assets/4.jpg" class="rounded-img" alt="">
-    </div>
-    <div class="col-lg-4 col-sm-6 col-sm-4 text-center p-3">
-        <img src="assets/5.jpg" class="rounded-img" alt="">
-    </div>
-    <div class="col-lg-4 col-sm-6 col-sm-4 text-center p-3">
-        <img src="assets/6.jpg" class="rounded-img" alt="">
-    </div>
+    
 </div>
