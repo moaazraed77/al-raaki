@@ -44,10 +44,15 @@
 }
 .content{
     width: 80%;
-    background-color: #cdcdfd6b;
+    background-color: rgb(241 241 255 / 42%);
     height: 100%;
     position: absolute;
     top: 0px;
     right: 20%;
     overflow-y: scroll;
+}
+.btn-danger{
+    background-color: rgb(211, 34, 34) !important;
+    font-family: revert-layer;
+    font-size: 15px;
 }

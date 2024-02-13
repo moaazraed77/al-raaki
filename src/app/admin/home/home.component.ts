@@ -120,7 +120,7 @@ export class HomeComponent {
 
   // submit Movment Data on firebase 
   async submitMovmentImage() {
-    this.toastr.info("يتم رفع الصورة حاليا","يرجي الانتظار")
+    this.toastr.info("يتم رفع الصورة حاليا", "يرجي الانتظار")
     await this.uploadFile(this.imgMovementFile, "movmentImage")  // wait until file is uploaded
     if (this.imgMovementPromoURL && this.controlView === "add-data-moving") {
       this.homeDataServ.postCarasouelData(this.movingImage.value!)
@@ -131,7 +131,7 @@ export class HomeComponent {
   }
   // submit Static Data on firebase 
   async submitStaticImage() {
-    this.toastr.info("يتم رفع الصورة حاليا","يرجي الانتظار")
+    this.toastr.info("يتم رفع الصورة حاليا", "يرجي الانتظار")
     await this.uploadFile(this.imgStacticFile, "staticImage") // wait until file is uploaded
     if (this.imgStacticPromoURL && this.controlView === "add-data-static") {
       this.homeDataServ.postStaticData(this.staticImage.value!)
@@ -171,6 +171,7 @@ export class HomeComponent {
     }
   }
   setEditValueOnServer(type: string) {
+    this.firestorage.storage.refFromURL(this.editObjectPromo.img).delete() // to delete the file from Firebase Storage
     if (type === "homeDataCarasouel")
       this.homeDataServ.editData(this.editObjectPromo, this.movingImage.value, type)
     else if (type === "homeDataStatic")
@@ -184,6 +185,7 @@ export class HomeComponent {
         for (const key in data) {
           if (item.id == data[key].id) {
             this.http.delete(`${this.homeDataServ.url}/${type}/${key}.json`).subscribe(() => {
+              this.firestorage.storage.refFromURL(item.img).delete() // to delete the file from Firebase Storage
               this.toastr.success("تم حذف الصورة ");
               if (type == "homeDataCarasouel")
                 this.getMovmentData()

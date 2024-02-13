@@ -72,6 +72,7 @@ export class VisitsComponent {
       this.visitsServ.postVisitData(this.visit.value!)
       this.dataControl()
     } else if (this.controlView === "edit-data") {
+      this.firestorage.storage.refFromURL(this.editObjectPromo.img).delete() // to delete the file from Firebase Storage
       this.visitsServ.editData(this.editObjectPromo, this.visit.value)
     }
   }
@@ -100,6 +101,7 @@ export class VisitsComponent {
         for (const key in data) {
           if (item.id == data[key].id) {
             this.http.delete(`${this.visitsServ.url}/visits/${key}.json`).subscribe(() => {
+              this.firestorage.storage.refFromURL(item.img).delete() // to delete the file from Firebase Storage
               this.toastr.success("تم حذف الصورة ");
                 this.getVisitsData()
             });

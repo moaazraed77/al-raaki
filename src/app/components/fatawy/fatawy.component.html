@@ -1,35 +1,16 @@
 <div class="col-12 bg-light">
-    <table class="container mt-2 table table-striped table-hover">
-            <!-- <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-              </tr>
-            </thead> -->
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>مشاري راشد</td>
-                <td><i class="bi bi-play-circle-fill" (click)=" play='item-1'" [ngClass]="[{'none':play=='item-1'}]" *ngIf="play!='item-1'"></i>
-                 <audio src="assets/a.mp3" controls [autoplay]=" play=='item-1'" *ngIf="play=='item-1'"></audio></td>
-                <td><a href="assets/a.mp3" download="quran"><i class="bi bi-file-earmark-arrow-down"></i></a></td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>سعد الغامدي</td>
-                <td><i class="bi bi-play-circle-fill" (click)="play='item-2'" [ngClass]="[{'none':play=='item-2'}]" *ngIf="play!='item-2'"></i>
-                 <audio src="assets/b.mp3" controls [autoplay]=" play=='item-2'" *ngIf="play=='item-2'"></audio></td>
-                <td><a href="assets/b.mp3" download="quran"><i class="bi bi-file-earmark-arrow-down"></i></a></td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>هزاع البلوشي</td>
-                <td><i class="bi bi-play-circle-fill" (click)="play='item-3'" [ngClass]="[{'none':play=='item-3'}]" *ngIf="play!='item-3'"></i>
-                 <audio src="assets/c.mp3" controls [autoplay]=" play=='item-3'" *ngIf="play=='item-3'"></audio></td>
-                <td><a href="assets/c.mp3" download="quran"><i class="bi bi-file-earmark-arrow-down"></i></a></td>
-              </tr>
-            </tbody>
-    </table>
+  <table class="container mt-2 table table-striped table-hover">
+    <tbody>
+      <tr *ngFor="let item of dataList;let i=index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.title}}</td>
+        <td class="text-center">
+          <i class="bi bi-play-circle" (click)="showToastr(item.id)" [id]="item.id" *ngIf="play!=item.id"></i>
+          <i class="bi bi-play-circle-fill" *ngIf="play==item.id"  (click)="showToastr(0)"></i>
+          <audio [src]="item.audio" [autoplay]="play==item.id"  *ngIf="play==item.id" controls style="display: none;"> </audio>
+        </td>
+        <td><a [href]="item.audio" [download]="item.title"><i class="bi bi-file-earmark-arrow-down"></i></a></td>
+      </tr>
+    </tbody>
+  </table>
 </div>

@@ -1,0 +1,13 @@
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-panel {
+  background-color: #bce0f9;
+  color: #a0276e;
+}
+.progress{
+  --bs-progress-height: 25px;
+  height: 27px;
+  max-height: 27px;
+}
+.progress-bar-striped{
+  font-size: 15px;
+}

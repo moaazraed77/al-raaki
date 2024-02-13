@@ -15,7 +15,7 @@
       <img [src]="editObjectPromo.img" alt="" class="image-dash-view" *ngIf="editObjectPromo">
     </div>
     <label for="file" class="m-2">اختر الصورة المتحركة</label>
-    <input type="file" id="file" class="form-control" (change)="uploadMovingImage($event)">
+    <input type="file"  accept=".jpg , .png , .jpeg , .webp " id="file" class="form-control" (change)="uploadMovingImage($event)">
     <img [src]="imgMovementPromoURL" alt="" class="image-dash-view" *ngIf="imgMovementPromoURL">
     <div class="text-center pt-2">
       <button type="submit" class="btn btn-primary" *ngIf="imgMovementPromoURL">حفظ</button>
@@ -29,7 +29,7 @@
       <img [src]="editObjectPromo.img" alt="" class="image-dash-view" *ngIf="editObjectPromo">
     </div>
     <label for="file" class="m-2">اختر الصورة الثابتة</label>
-    <input type="file" id="file" class="form-control pt-2" (change)="uploadStaticImage($event)">
+    <input type="file"  accept=".jpg , .png , .jpeg , .webp " id="file" class="form-control pt-2" (change)="uploadStaticImage($event)">
     <img [src]="imgStacticPromoURL" alt="" class="image-dash-view" *ngIf="imgStacticPromoURL">
     <div class="text-center pt-2">
       <button class="btn btn-primary" *ngIf="imgStacticPromoURL">حفظ</button>
