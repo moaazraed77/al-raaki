@@ -20,20 +20,6 @@ export class AboutUsService {
     return this.http.get<aboutUS[]>(`${this.url}/aboutUS.json`);
   }
 
-  async getData(): Promise<aboutUS[]> {
-    this.dataList = []
-    this.getDataAPI().subscribe({
-      next: data => {
-        for (const key in data) {
-          this.dataList.push(data[key])
-        }
-      },
-      error: () => { this.toastr.error("Error Connection ", " Data Incompleted"); },
-      complete: () => { return this.dataList }
-    })
-    return this.dataList
-  }
-
   postAboutData(data: any) {
     this.http.post(`${this.url}/aboutUS.json`, data).subscribe(() => {
       this.toastr.success("تمت الاضافة المحتوي ")

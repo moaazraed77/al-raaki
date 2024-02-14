@@ -21,7 +21,7 @@ export class HomeComponent {
           this.dataListMoving.push(data[key])
         }
       },
-      error: () => { this.toastr.error("Error Connection ", " Data Incompleted"); },
+      error: () => {},
       complete: () => {    }
     })
     homeDataServ.getDataAPI("homeDataStatic").subscribe({

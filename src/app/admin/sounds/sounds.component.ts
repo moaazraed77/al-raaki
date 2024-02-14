@@ -1,5 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, PatternValidator, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { sound } from 'src/app/Modal/interfaces/sound..interface';
+import { SoundsService } from 'src/app/services/sounds.service';
 
 @Component({
   selector: 'app-sounds',
@@ -10,49 +14,103 @@ export class SoundsComponent {
 
   controlView: string = "add-data";
 
-  uploading: any = "";
+  soundArray: sound[] = []
 
-  soundArray: any[] = [{ id: 1, url: "https://www.youtube.com/embed/qrolVhT05iQ", title: "تلاوة هادئة .. القارئ هزاع البلوشي  " }, { id: 2, url: "https://www.youtube.com/embed/1O_VxbrzWHQ", title: "هزاع البلوشي تلاوة خاشعة لعلاج ضيق الصدر والهم ارح مسمعك واسمعها  " }, { id: 3, url: "https://www.youtube.com/embed/MagEXhAbLkM", title: "سورة البقرة بصوت هزاع البلوشي بجودة عالية" }]
+  deletedItem: any = {}
 
-  deletedItem:any={}
+  editItem: any = {}
 
-  constructor(private formBuilder:FormBuilder){}
-  
-  sound=this.formBuilder.group({
-    id:[new Date().getTime()],
-    title:[""],
-    url:[""],
+  showVideoPromo = false
+
+  constructor(private formBuilder: FormBuilder, private soundServ: SoundsService, private toastr: ToastrService, private http: HttpClient) {
+
+  }
+
+
+  sound = this.formBuilder.group({
+    id: [new Date().getTime()],
+    title: ["", Validators.required],
+    url: ["", Validators.required],
   })
 
-  dataControl(){
-    if(this.controlView=="add-data")
+  resetView() {
+    this.controlView = "add-data"
     this.sound.patchValue({
-      id:new Date().getTime(),
-      title:"",
-      url:"",
+      id: new Date().getTime(),
+      title: "",
+      url: "",
     })
+    this.showVideoPromo = false
   }
 
-  // promo upload to show which files uploaded and the size of each photo
-  upload(event: any) {
-    const files = event.target.files[0];
-    let loader = new FileReader();
-    if (event.target.files[0].size / 1024 > 30)
-      loader.readAsDataURL(event.target.files[0])
-    loader.onload = (event) => {
-      this.uploading = event.target?.result;  // show the photos before uploading
+  resetURL() {
+    this.sound.patchValue({
+      url: "",
+    })
+    this.showVideoPromo = false
+  }
+
+  getData() {
+    this.soundArray = []
+    this.soundServ.getDataAPI().subscribe({
+      next: data => {
+        for (const key in data) {
+          this.soundArray.push(data[key])
+        }
+      }
+    })
+    this.controlView = 'show-data';
+  }
+
+  async setYoutubeURL() {
+    if (this.sound.value.url?.startsWith("https://youtu.be/")){
+       this.sound.patchValue({
+        url: `https://www.youtube.com/embed/${this.sound.value.url?.slice(("https://youtu.be/").length, this.sound.value.url.indexOf("?"))}`
+      })}else{
+        this.sound.patchValue({
+          url: `https://www.youtube.com/embed/${this.sound.value.url?.slice(this.sound.value.url.indexOf("=") + 1, this.sound.value.url.length)}`
+        })
+      }
+      
+    this.showVideoPromo = true
+    if (this.sound.value.url === "https://www.youtube.com/embed/")
+      this.resetURL()
+  }
+
+
+  async submit() {
+    if (this.sound.valid && this.controlView === "add-data") {
+      this.soundServ.postSoundData(this.sound.value)
+    } else if (this.sound.valid && this.controlView === "edit-data") {
+      await this.soundServ.editData(this.sound.value)
+    } else {
+      this.toastr.error("راجع بيانات المحتوي");
     }
+    this.resetView()
   }
 
-  edit(item:any){
+  edit(item: any) {
+    this.editItem = item
     this.sound.patchValue({
-      id:item.id,
-      title:item.title,
-      url:item.url,
+      id: item.id,
+      title: item.title,
+      url: item.url,
     })
   }
 
-  set_delete(item:any){
-    this.deletedItem=item;
+  set_delete(item: sound) {
+    this.soundServ.getDataAPI().subscribe({
+      next: data => {
+        for (const key in data) {
+          if (item.id == data[key].id) {
+            this.http.delete(`${this.soundServ.url}/sound/${key}.json`).subscribe(() => {
+              this.toastr.success("تم حذف الصورة ");
+              this.getData()
+            });
+            break;
+          }
+        }
+      },
+    })
   }
 }

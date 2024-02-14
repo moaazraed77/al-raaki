@@ -27,13 +27,17 @@ export class VisitsComponent {
   visit = this.formBuilder.group({
     id: [new Date().getTime()],
     img: [""],
+    url: [""],
   })
 
-  dataControl() {
-    if (this.controlView == "add-data") {
-      this.editObjectPromo = ""
-      this.imgPromoURL = ""
-    }
+  resetData() {
+      this.editObjectPromo = "";
+      this.imgPromoURL = "";
+      this.visit.patchValue({
+        id: new Date().getTime(),
+        img: "",
+        url: "",
+      })
   }
 
   getVisitsData() {
@@ -67,14 +71,14 @@ export class VisitsComponent {
   // submit  Data on firebase 
   async submitImage() {
     this.toastr.info("يتم رفع الصورة حاليا","يرجي الانتظار")
+    if (this.imgPromoURL != "") 
     await this.uploadFile(this.imageFile)  // wait until file is uploaded
     if (this.imgPromoURL && this.controlView === "add-data") {
-      this.visitsServ.postVisitData(this.visit.value!)
-      this.dataControl()
+     await this.visitsServ.postVisitData(this.visit.value!)
     } else if (this.controlView === "edit-data") {
-      this.firestorage.storage.refFromURL(this.editObjectPromo.img).delete() // to delete the file from Firebase Storage
-      this.visitsServ.editData(this.editObjectPromo, this.visit.value)
+      await this.visitsServ.editData(this.editObjectPromo, this.visit.value)
     }
+    this.resetData()
   }
 
   // -------------- funcion to upload img file and get image url ---- on firebase --------------
@@ -92,7 +96,12 @@ export class VisitsComponent {
   edit(item: any) {
     this.editObjectPromo = item;
     this.controlView = "edit-data";
-    this.imgPromoURL = ""
+    this.imgPromoURL = "";
+    this.visit.patchValue({
+      id: new Date().getTime(),
+      img: item.img,
+      url: item.url,
+    })
   }
 
   set_delete(item: images) {

@@ -1,14 +1,21 @@
 <div class="col-12">
-  <button class="btn btn-info m-2" (click)="controlView='add-data';dataControl();"> اضافة </button>
-  <button class="btn btn-secondary m-2" (click)="controlView='show-data';getVisitsData();" [disabled]="controlView=='show-data'"> عرض المحتوي</button>
+  <button class="btn btn-info m-2" (click)="controlView='add-data';resetData();"> اضافة </button>
+  <button class="btn btn-secondary m-2" (click)="controlView='show-data';getVisitsData();"
+    [disabled]="controlView=='show-data'"> عرض المحتوي</button>
 
   <form [formGroup]="visit" *ngIf="controlView=='add-data' || controlView=='edit-data'" (ngSubmit)="submitImage()">
     <div class="text-center">
       <img [src]="editObjectPromo.img" alt="" class="image-dash-view" *ngIf="editObjectPromo">
     </div>
+    <div class="form-group">
       <label for="file" class="m-2">اختر الصورة</label>
-    <input type="file" accept=".jpg , .png , .jpeg , .webp " id="file" class="form-control" (change)="upload($event)">
-    <img [src]="imgPromoURL" alt="" class="image-dash-view" *ngIf="imgPromoURL">
+      <input type="file" accept=".jpg , .png , .jpeg , .webp " id="file" class="form-control" (change)="upload($event)">
+      <img [src]="imgPromoURL" alt="" class="image-dash-view" *ngIf="imgPromoURL">
+    </div>
+    <div class="form-group">
+      <label for="url" class="m-2">اضف الرابط</label>
+      <input type="url" id="url" class="form-control" formControlName="url" placeholder=".....">
+    </div>
     <div class="text-center pt-2">
       <button type="submit" class="btn btn-primary">حفظ</button>
     </div>
@@ -25,6 +32,7 @@
       <tr *ngFor="let item of visitsList;let i=index">
         <td>{{i+1}}</td>
         <td><img [src]="item.img" alt="" class="image-dash-view"></td>
+        <td>{{item.url}}</td>
         <td>
           <button class="btn btn-warning m-1" (click)="edit(item)"><i class="bi bi-pencil-square"></i></button>
           <button class="btn btn-danger m-1" (click)="deleteObjectPromo=item" data-bs-toggle="modal"
@@ -35,21 +43,22 @@
   </table>
 </div>
 
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body d-flex justify-content-center">
-          <img [src]="deleteObjectPromo.img" alt="" class="deleted-Image">
-        </div>
-        <div class="modal-footer d-flex justify-content-center">
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="set_delete(deleteObjectPromo)">delete</button>
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img [src]="deleteObjectPromo.img" alt="" class="deleted-Image">
+        <p>{{deleteObjectPromo.url}}</p>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+          (click)="set_delete(deleteObjectPromo)">delete</button>
       </div>
     </div>
   </div>
+</div>

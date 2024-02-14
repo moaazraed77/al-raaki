@@ -22,7 +22,8 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideStorage, getStorage } from '@angular/fire/storage'; // write this special code for upload img 
-import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat'; // write this special code for upload img 
+import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { SafeUrlCutomerViewPipe } from './Modal/pipes/safe-url-cutomer-view.pipe'; // write this special code for upload img 
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat'; // w
     CallUsComponent,
     FatawyComponent,
     AboutUsComponent,
-    // SafePipe,
+    SafeUrlCutomerViewPipe,
   ],
   imports: [
     BrowserModule,

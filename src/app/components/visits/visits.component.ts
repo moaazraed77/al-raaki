@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { images } from 'src/app/Modal/interfaces/images.interface';
+import { visit } from 'src/app/Modal/interfaces/visit.interface';
 import { VisitsService } from 'src/app/services/visits.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { VisitsService } from 'src/app/services/visits.service';
 })
 export class VisitsComponent {
   
-  dataList: images[] = [];
+  dataList: visit[] = [];
   
   constructor(private visitsServ:VisitsService ,private toastr:ToastrService){
     visitsServ.getDataAPI().subscribe({
