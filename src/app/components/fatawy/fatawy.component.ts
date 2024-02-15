@@ -16,6 +16,11 @@ export class FatawyComponent {
 
   constructor(private fatawyServ:FatawyService, private toastr:ToastrService){
 
+    // if (sessionStorage.getItem("page-attitude") != "fatawy-page-working-fine") {
+    //   sessionStorage.setItem("page-attitude", "fatawy-page-working-fine")
+    //   window.location.reload()
+    // }
+
     fatawyServ.getDataAPI().subscribe(data=>{
       for (const key in data) {
         this.dataList.push(data[key])

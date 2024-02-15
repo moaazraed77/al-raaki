@@ -15,6 +15,12 @@ export class HomeComponent {
   dataListMoving: images[] = [];
   
   constructor(private homeDataServ:HomeDataService ,private toastr:ToastrService){
+
+    // if (sessionStorage.getItem("page-attitude") != "home-page-working-fine") {
+    //   sessionStorage.setItem("page-attitude", "home-page-working-fine")
+    //   window.location.reload()
+    // }
+
     homeDataServ.getDataAPI("homeDataCarasouel").subscribe({
       next: data => {
         for (const key in data) {

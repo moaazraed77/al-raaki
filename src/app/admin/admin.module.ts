@@ -13,6 +13,7 @@ import { ProductsComponent } from './products/products.component';
 import { SoundsComponent } from './sounds/sounds.component';
 import { VisitsComponent } from './visits/visits.component';
 import { SafePipe } from '../Modal/pipes/safe.pipe';
+import { SocialIconsComponent } from './social-icons/social-icons.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { SafePipe } from '../Modal/pipes/safe.pipe';
     ProductsComponent,
     SoundsComponent,
     VisitsComponent,
-    SafePipe
+    SafePipe,
+    SocialIconsComponent
   ],
   imports: [
     CommonModule,

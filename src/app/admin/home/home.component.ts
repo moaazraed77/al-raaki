@@ -56,7 +56,6 @@ export class HomeComponent {
     })
   }
 
-
   getMovmentData() {
     this.dataList = [];
     this.homeDataServ.getDataAPI("movingImages").subscribe({
@@ -84,7 +83,6 @@ export class HomeComponent {
       complete: () => { }
     })
   }
-
 
   // promo image upload to show which files uploaded and the size of each photo
   uploadMovingImage(event: any) {
@@ -177,7 +175,6 @@ export class HomeComponent {
     else if (type === "homeDataStatic")
       this.homeDataServ.editData(this.editObjectPromo, this.staticImage.value, type)
   }
-
 
   set_delete(item: images, type: string) {
     this.homeDataServ.getDataAPI(type).subscribe({

@@ -9,18 +9,22 @@ import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { SoundsComponent } from './sounds/sounds.component';
 import { VisitsComponent } from './visits/visits.component';
+import { SocialIconsComponent } from './social-icons/social-icons.component';
 
 const routes: Routes = [
-  {path:"admin-login-dash",component:LoginDashComponent},
-  {path:"admin",component:AdminComponent,children:[
-    {path:"about-us-dash",component:AboutUsComponent},
-    {path:"call-us-dash",component:CallUsComponent},
-    {path:"fatawy-dash",component:FatawyComponent},
-    {path:"home-dash",component:HomeComponent},
-    {path:"products-dash",component:ProductsComponent},
-    {path:"sounds-dash",component:SoundsComponent},
-    {path:"visits-dash",component:VisitsComponent},
-  ]}
+  { path: "admin-login-dash", component: LoginDashComponent },
+  {
+    path: "admin", component: AdminComponent, children: [
+      { path: "about-us-dash", component: AboutUsComponent },
+      { path: "call-us-dash", component: CallUsComponent },
+      { path: "fatawy-dash", component: FatawyComponent },
+      { path: "home-dash", component: HomeComponent },
+      { path: "products-dash", component: ProductsComponent },
+      { path: "sounds-dash", component: SoundsComponent },
+      { path: "visits-dash", component: VisitsComponent },
+      { path: "social-icons-dash", component: SocialIconsComponent },
+    ]
+  }
 ];
 
 @NgModule({

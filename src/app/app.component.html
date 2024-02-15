@@ -1,2 +1,6 @@
 <header-component *ngIf="viewHeader"></header-component>
 <router-outlet></router-outlet>
+
+<div class="fixed-whats" *ngIf="viewHeader">
+    <a href="https://wa.me/{{item.social}}" *ngFor="let item of whatsapp" target="_blank"><i class="bi bi-whatsapp"></i></a>
+</div>

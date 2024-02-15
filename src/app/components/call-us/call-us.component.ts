@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class CallUsComponent {
 
+  constructor() {
+    if (sessionStorage.getItem("page-attitude") != "callUs-page-working-fine") {
+      sessionStorage.setItem("page-attitude", "callUs-page-working-fine")
+      window.location.reload()
+    }
+  }
+
 }

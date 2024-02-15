@@ -13,6 +13,10 @@ export class VisitsComponent {
   dataList: visit[] = [];
   
   constructor(private visitsServ:VisitsService ,private toastr:ToastrService){
+    // if (sessionStorage.getItem("page-attitude") != "visits-page-working-fine") {
+    //   sessionStorage.setItem("page-attitude", "visits-page-working-fine")
+    //   window.location.reload()
+    // }
     visitsServ.getDataAPI().subscribe({
       next: data => {
         for (const key in data) {

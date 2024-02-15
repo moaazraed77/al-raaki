@@ -13,6 +13,10 @@ export class AboutUsComponent {
   dataList: aboutUS[] = [];
   
   constructor(private aboutUsServ:AboutUsService ,private toastr:ToastrService){
+    // if(sessionStorage.getItem("page-attitude")!="aboutUs-page-working-fine"){
+    //   sessionStorage.setItem("page-attitude","aboutUs-page-working-fine")
+    //   window.location.reload()
+    // }
     aboutUsServ.getDataAPI().subscribe({
       next: data => {
         for (const key in data) {

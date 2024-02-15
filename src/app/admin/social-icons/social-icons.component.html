@@ -1,0 +1,133 @@
+<div class="col-12" style="height: 100vh;">
+    <div class="d-flex justify-content-end align-items-center">
+        <button type="button" class="m-2 btn btn-success social-btn" data-bs-toggle="modal" data-bs-target="#exampleModal0">
+            <i class="bi bi-whatsapp"></i> تعديل واتساب </button>
+            <button type="button" class="m-2 btn btn-danger social-btn" data-bs-toggle="modal" data-bs-target="#exampleModal4">
+                <i class="bi bi-youtube"></i> تعديل يوتيوب </button>
+        <button type="button" class="m-2 btn btn-warning social-btn" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+            <i class="bi bi-snapchat"></i> تعديل سناب شات </button>
+        <button type="button" class="m-2 btn btn-danger social-btn" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+            <i class="bi bi-instagram"></i> تعديل انستجرام </button>
+        <button type="button" class="m-2 btn btn-primary social-btn" data-bs-toggle="modal" data-bs-target="#exampleModal5">
+            <i class="bi bi-instagram"></i> تعديل فيسبوك </button>
+    </div>
+</div>
+
+
+
+<!-- ----------------------------------------- social media links Modals ----------------------------------------- -->
+<!-- form for what's app -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal0" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-2">
+                <form [formGroup]="whatsapp" (ngSubmit)="submitWhats()">
+                    <div class="form-group">
+                        <label for="whatsapp" class="text-success"> <i class="bi bi-whatsapp"></i> رقم الواتساب</label>
+                        <input type="text" class="form-control" id="whatsapp" formControlName="social">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="m-2 btn btn-success" data-bs-dismiss="modal">save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- form for snapchat -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-2">
+                <form [formGroup]="snapchat" (ngSubmit)="submitSnapChat()">
+                    <div class="form-group">
+                        <label for="snapchat" class="text-warning"> <i class="bi bi-snapchat"></i> لينك سناب شات</label>
+                        <input type="text" class="form-control" id="snapchat" formControlName="social">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="m-2 btn btn-warning" data-bs-dismiss="modal">save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- form for Instagram -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-2">
+                <form [formGroup]="instagram" (ngSubmit)="submitInstagram()">
+                    <div class="form-group">
+                        <label for="instagram" class="text-danger"> <i class="bi bi-instagram"></i> لينك
+                            الانستجرام</label>
+                        <input type="text" class="form-control" id="instagram" formControlName="social">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="m-2 btn btn-danger" data-bs-dismiss="modal">save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- form for twitter -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-2">
+                <form [formGroup]="twitter" (ngSubmit)="submitYoutube()">
+                    <div class="form-group">
+                        <label for="youtube" class="text-danger"> <i class="bi bi-youtube"></i> لينك
+                            يوتيوب </label>
+                        <input type="text" class="form-control" id="youtube" formControlName="social">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="m-2 btn btn-danger" data-bs-dismiss="modal">save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- form for facebook -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel5" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-2">
+                <form [formGroup]="facebook" (ngSubmit)="submitfacebook()">
+                    <div class="form-group">
+                        <label for="facebook" class="text-primary"> <i class="bi bi-facebook"></i> لينك
+                            فيسبوك</label>
+                        <input type="text" class="form-control" id="facebook" formControlName="social">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="m-2 btn btn-primary" data-bs-dismiss="modal">save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
