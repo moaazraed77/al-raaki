@@ -17,7 +17,7 @@ export class VisitsComponent {
   editObjectPromo: any = "";
   deleteObjectPromo: any = "";
   imgPromoURL: any = "";
-  imageFile:any={}
+  imageFile: any = {}
   visitsList: any[] = [];
 
   constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private http: HttpClient,
@@ -31,13 +31,13 @@ export class VisitsComponent {
   })
 
   resetData() {
-      this.editObjectPromo = "";
-      this.imgPromoURL = "";
-      this.visit.patchValue({
-        id: new Date().getTime(),
-        img: "",
-        url: "",
-      })
+    this.editObjectPromo = "";
+    this.imgPromoURL = "";
+    this.visit.patchValue({
+      id: new Date().getTime(),
+      img: "",
+      url: "",
+    })
   }
 
   getVisitsData() {
@@ -70,11 +70,11 @@ export class VisitsComponent {
 
   // submit  Data on firebase 
   async submitImage() {
-    this.toastr.info("يتم رفع الصورة حاليا","يرجي الانتظار")
-    if (this.imgPromoURL != "") 
-    await this.uploadFile(this.imageFile)  // wait until file is uploaded
+    this.toastr.info("يتم رفع الصورة حاليا", "يرجي الانتظار")
+    if (this.imgPromoURL != "")
+      await this.uploadFile(this.imageFile)  // wait until file is uploaded
     if (this.imgPromoURL && this.controlView === "add-data") {
-     await this.visitsServ.postVisitData(this.visit.value!)
+      await this.visitsServ.postVisitData(this.visit.value!)
     } else if (this.controlView === "edit-data") {
       await this.visitsServ.editData(this.editObjectPromo, this.visit.value)
     }
@@ -86,12 +86,12 @@ export class VisitsComponent {
     if (file) {
       const path = `alraaki/${new Date().getTime()}${file.name}`; // we make name of file in firebase storage 
       const uploadTask = await this.firestorage.upload(path, file);
-        this.visit.patchValue({
-          id: new Date().getTime(),
-          img: await uploadTask.ref.getDownloadURL()
-        })
-      }
+      this.visit.patchValue({
+        id: new Date().getTime(),
+        img: await uploadTask.ref.getDownloadURL()
+      })
     }
+  }
 
   edit(item: any) {
     this.editObjectPromo = item;
@@ -112,7 +112,7 @@ export class VisitsComponent {
             this.http.delete(`${this.visitsServ.url}/visits/${key}.json`).subscribe(() => {
               this.firestorage.storage.refFromURL(item.img).delete() // to delete the file from Firebase Storage
               this.toastr.success("تم حذف الصورة ");
-                this.getVisitsData()
+              this.getVisitsData()
             });
             break;
           }

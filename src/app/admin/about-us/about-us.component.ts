@@ -28,7 +28,7 @@ export class AboutUsComponent {
     text: [""],
   })
 
-  dataControl() {
+  resetView() {
     if (this.controlView == "add-data")
       this.about.patchValue({
         id: new Date().getTime(),
@@ -40,7 +40,7 @@ export class AboutUsComponent {
   async submit() {
     if (this.controlView === "add-data" && (this.about.get("title")?.value != "" || this.about.get("text")?.value != "")) {
       this.aboutUsServ.postAboutData(this.about.value!)
-      this.dataControl()
+      this.resetView()
     } else if (this.controlView === "edit-data") {
       this.aboutUsServ.editData(this.about.value)
     }

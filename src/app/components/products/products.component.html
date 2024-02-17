@@ -1,60 +1,13 @@
 <div class="container">
-    <div class="col-lg-4 col-md-2 col-sm-4 p-2 product">
-        <img src="assets/1.jpg">
-        <p class="title text-center">Hello</p>
-        <p class="text-center">Lorem ipsua saepe sequi deserunt id iusto accusamus beatae archi tenetur voluptas labore!
-        </p>
+    <div class="col-lg-4 col-md-2 col-sm-4 p-2 product" *ngFor="let item of products">
+        <img [src]="item.productImage">
+        <p class="title text-center">{{item.productsTitle}}</p>
+        <p class="text-center">{{item.productsDetails}}  </p>
         <div class="text-center">
-            <p><span class="discount text-danger"> د.ك 140</span> 120 د.ك </p>
-            <button class="btn btn-primary">شراء</button>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-2 col-sm-4 p-2 product">
-        <img src="assets/2.jpg">
-        <p class="title text-center">Welcome</p>
-        <p class="text-center">Lorem ipsum dolor sit amet, nulla saepe sequi deserunt </p>
-        <div class="text-center">
-            <p><span class="discount text-danger"> د.ك 80</span> 78 د.ك </p>
-            <button class="btn btn-primary">شراء</button>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-2 col-sm-4 p-2 product">
-        <img src="assets/3.jpg">
-        <p class="title text-center">hi</p>
-        <p class="text-center">Lorem ipsum dolor sit amet, consectetur deserunt id ioluptates sunt, tenetur nemo quo.
-            Amet eum voluptas labore!</p>
-        <div class="text-center">
-            <p><span class="discount text-danger"> د.ك 75</span> 50 د.ك </p>
-            <button class="btn btn-primary">شراء</button>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-2 col-sm-4 p-2 product">
-        <img src="assets/1.jpg">
-        <p class="title text-center">Hello</p>
-        <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, sed asperiores, nulla
-            saepe sequi deserunt </p>
-        <div class="text-center">
-            <p><span class="discount text-danger"> د.ك 90</span> 85 د.ك </p>
-            <button class="btn btn-primary">شراء</button>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-2 col-sm-4 p-2 product">
-        <img src="assets/2.jpg">
-        <p class="title text-center">Welcome</p>
-        <p class="text-center">Lorem ipsum dolor sit amet, , nulla saepe sequi deserunt </p>
-        <div class="text-center">
-            <p><span class="discount text-danger"> د.ك 75</span> 40 د.ك </p>
-            <button class="btn btn-primary">شراء</button>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-2 col-sm-4 p-2 product">
-        <img src="assets/3.jpg">
-        <p class="title text-center">hi</p>
-        <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, sed asperiores, nulla
-            saepe sequi deserunt </p>
-        <div class="text-center">
-            <p><span class="discount text-danger"> د.ك 60</span> 52 د.ك </p>
-            <button class="btn btn-primary">شراء</button>
+            <p><span class="discount text-danger" *ngIf="item.productPrice>0"> {{item.productPrice}} د.ك</span> {{item.productDiscount}} د.ك</p>
+            <a href="https://wa.me/{{temp.social}}?text=مرحباً اريد الحصول علي هذا المنتج : %0aاسم المنتج%20:%20{{item.productsTitle}}%0aتفاصيل المنتج : %20{{item.productsDetails}}%0aالسعر المطلوب%20:%20{{item.productDiscount}} د.ك %0a صورة المنتج :  {{item.productImage| editProductLink}}" *ngFor="let temp of whatsapp" target="_blank" class="btn btn-primary">
+                <button class="btn btn-primary">شراء</button>
+            </a>
         </div>
     </div>
 </div>

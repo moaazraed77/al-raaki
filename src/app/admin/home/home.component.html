@@ -1,6 +1,6 @@
 <div class="col-12">
-  <button class="btn btn-primary m-2" (click)="dataControl();controlView='add-data-moving'"> اضافة صورة متحركة</button>
-  <button class="btn btn-primary m-2" (click)="dataControl();controlView='add-data-static'"> اضافة صورة ثابتة </button>
+  <button class="btn btn-primary m-2" (click)="resetView();controlView='add-data-moving'"> اضافة صورة متحركة</button>
+  <button class="btn btn-primary m-2" (click)="resetView();controlView='add-data-static'"> اضافة صورة ثابتة </button>
   <button class="btn btn-secondary m-2" [disabled]="controlView==='show-data-moving'" (click)="getMovmentData();">
     عرض
     الصور المتحركة</button>

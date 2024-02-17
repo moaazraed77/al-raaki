@@ -40,7 +40,7 @@ export class HomeComponent {
     img: ["", Validators.required],
   })
 
-  dataControl() {
+  resetView() {
     this.imgMovementFile = "";
     this.imgStacticFile = "";
     this.editObjectPromo = ""
@@ -122,7 +122,7 @@ export class HomeComponent {
     await this.uploadFile(this.imgMovementFile, "movmentImage")  // wait until file is uploaded
     if (this.imgMovementPromoURL && this.controlView === "add-data-moving") {
       this.homeDataServ.postCarasouelData(this.movingImage.value!)
-      this.dataControl()
+      this.resetView()
     } else if (this.controlView === "edit-data-moving") {
       this.setEditValueOnServer("homeDataCarasouel")
     }
@@ -133,7 +133,7 @@ export class HomeComponent {
     await this.uploadFile(this.imgStacticFile, "staticImage") // wait until file is uploaded
     if (this.imgStacticPromoURL && this.controlView === "add-data-static") {
       this.homeDataServ.postStaticData(this.staticImage.value!)
-      this.dataControl()
+      this.resetView()
     } else if (this.controlView === "edit-data-static") {
       this.setEditValueOnServer("homeDataStatic")
     }
