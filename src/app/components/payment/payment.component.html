@@ -1,0 +1,70 @@
+<div class="col-12 bg-light d-flex justify-content-center">
+    <div class="container">
+        <div class="col-sm-5 cart pt-4">
+            <h4 class="m-2 ml-4">Cart</h4>
+            <div class="text-center cart-div-content" *ngFor="let item of cart;let i=index">
+                <img src="{{item.productImage}}" alt="" class="m-1">
+                <p class="text-primary">{{item.productsTitle}}</p>
+                <p>{{item.productDiscount}} د.ك</p>
+                <p>{{item.productsDetails}}</p>
+                <p class="change-quantity"> <span><i class="bi bi-dash-circle-dotted"
+                            (click)="calc(item.productDiscount,i,-1)"></i></span>
+                    <span>{{this.cart[i].productquantity}}</span>
+                    <span><i class="bi bi-plus-circle-dotted" (click)="calc(item.productDiscount,i,1)"></i></span>
+                </p>
+                <div class="text-center offcanvas-btns">
+                    <button class="btn btn-light btn-delete" (click)="delete(i)"><i
+                            class="bi bi-trash3-fill"></i></button>
+                </div>
+            </div>
+            <div class="btn btn-dark text-center mt-1" style="width: 100%;" type="button">شراء ( {{totalCost}} د.ك )
+            </div>
+        </div>
+        <div class="col-sm-7 pt-4">
+            <h4 class="m-2 ml-4">Enter your delivery details </h4>
+            <form action="">
+                <div class="inputs-div">
+                    <div class="form-group m-2">
+                        <input type="text" class="form-control" placeholder="phone ">
+                    </div>
+                    <div class="form-group m-2">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>-- country -- </option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="form-group m-2">
+                        <input type="text" class="form-control" placeholder="Area ">
+                    </div>
+                    <div class="form-group m-2">
+                        <input type="text" class="form-control" placeholder="Block ">
+                    </div>
+                    <div class="form-group m-2">
+                        <input type="text" class="form-control" placeholder="Street ">
+                    </div>
+                    <div class="form-group m-2">
+                        <input type="text" class="form-control" placeholder="House ">
+                    </div>
+                    <div class="form-group m-2">
+                        <input type="text" class="form-control" placeholder="Avenue ">
+                    </div>
+                </div>
+                <div class="text-center m-2">
+                    <button class="btn btn-primary" type="submit"> Pay Now</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+        <div class="col-12 d-flex justify-content-end flex-wrap">
+            <div class="col-sm-7">
+                <p class="title text-primary">Delivery Note</p>
+                <p class="text">إذا كان الطلب داخل دولة الكويت يصلكم خلال اليوم وبأسرع وقت ممكن بإذن الله وإذا كانت
+                    الطلبية من خارج الكويت تحتاج خمسة أيام عمل وتصلكم لمنزلكم في دولتكم الكريمة وأرجو التواصل معنا واتسب
+                    لتزويدنا فالبيانات الكاملة لمنزلكم في دولتكم
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

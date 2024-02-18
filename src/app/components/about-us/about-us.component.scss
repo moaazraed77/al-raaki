@@ -1,19 +1,23 @@
-.content{
+.content {
     min-height: 62vh;
     // background-image: url("'/assets/Artboard 3@4x.png'");
 }
-.special-title{
+
+.special-title {
     font-size: 35px;
     font-family: unset;
 }
-.title{
+
+.title {
     font-size: 1.2rem !important;
 }
+
 @media screen and (max-width:700px) {
-    .special-title{
+    .special-title {
         font-size: 30px;
     }
-    .title{
+
+    .title {
         font-size: 1rem;
     }
 }

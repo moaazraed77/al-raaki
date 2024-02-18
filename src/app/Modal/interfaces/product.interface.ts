@@ -5,4 +5,6 @@ export interface product {
     productDiscount: number,
     productPrice: number,
     productImage: string,
+    productquantity?: number,
+    productDateChoosed?: string,
 }

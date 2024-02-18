@@ -1,4 +1,4 @@
-<div class="container pb-5">
+<div class="container pb-5 d-flex justify-content-center flex-wrap">
     <div class="col-lg-4 col-md-6 col-sm-4 p-2 product" *ngFor="let item of products;let i=index">
         <img [src]="item.productImage">
         <p class="title text-center">{{item.productsTitle}}</p>
@@ -7,16 +7,17 @@
             <p><span class="discount text-danger" *ngIf="item.productPrice>0"> {{item.productPrice}} د.ك</span>
                 {{item.productDiscount}} د.ك</p>
             <a class="btn btn-primary" (click)="addToCart(item)">
-                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark"
-                    aria-label="Toggle navigation">اضف الي السلة</button>
+                <button class="btn btn-primary" aria-label="Toggle navigation"><i class="bi bi-bag-heart"></i>اضف الي
+                    السلة</button>
             </a>
         </div>
     </div>
 </div>
-<div class="cart-div d-flex justify-content-around align-items-center" *ngIf="totalCost">
-    <p class="price">شراء ( {{totalCost}} د.ك )</p>
-    <button class="btn btn-primary btn-review-cart">Review Cart</button>
+<div class="cart-div d-flex justify-content-around align-items-center" *ngIf="cart.length">
+    <p class="price"> تم اختيار ( {{cart.length}} ) منتجات</p>
+    <button class="btn btn-primary btn-review-cart" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark" aria-label="Toggle navigation">اظهر
+        محتويات السلة</button>
 </div>
 
 <!-- favourites products  -->
@@ -31,12 +32,12 @@
             <img src="{{item.productImage}}" alt="" class="m-1">
             <p>{{item.productsTitle}}</p>
             <p>{{item.productDiscount}} د.ك</p>
-            <p>{{item.productsDetails}}</p>
+            <p>{{item.productDateChoosed}}</p>
             <div class="text-center offcanvas-btns">
                 <button class="btn btn-light btn-delete" (click)="delete(i)"><i class="bi bi-trash3-fill"></i></button>
             </div>
         </div>
-        <div class="btn btn-dark text-center mt-3" style="width: 100%;" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark">شراء ( {{totalCost}} د.ك )</div>
+        <div class="btn btn-dark text-center mt-1" style="width: 100%;" type="button" data-bs-toggle="offcanvas"
+            routerLink="/payment" data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark">الذهاب للشراء </div>
     </div>
 </div>

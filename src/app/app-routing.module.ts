@@ -7,12 +7,14 @@ import { ProductsComponent } from './components/products/products.component';
 import { SoundsComponent } from './components/sounds/sounds.component';
 import { VisitsComponent } from './components/visits/visits.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
   {path:"call-us",component:CallUsComponent},
   {path:"about-us",component:AboutUsComponent},
   {path:"fatawy",component:FatawyComponent},
+  {path:"payment",component:PaymentComponent},
   {path:"products",component:ProductsComponent},
   {path:"sounds",component:SoundsComponent},
   {path:"visits",component:VisitsComponent},

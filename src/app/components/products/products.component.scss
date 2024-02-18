@@ -1,21 +1,29 @@
-.container{
+.container {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
 }
-.product{
+
+.product {
     padding: 5px;
 }
-.product img{
+
+.product img {
     height: 270px;
     border-radius: 10px;
     width: 100%;
 }
-.title{
+
+.product p {
+    margin-bottom: 5px;
+}
+
+.title {
     margin-top: 5px;
     margin-bottom: 3px;
 }
-.discount{
+
+.discount {
     text-decoration: line-through;
     text-decoration-color: rgba(133, 131, 131, 0.6784313725);
     text-decoration-color: rgba(0, 0, 0, 0.476);
@@ -25,8 +33,11 @@
     margin-right: -34%;
 }
 
+div a {
+    padding: 0px;
+}
 
-.cart-div{
+.cart-div {
     position: fixed;
     bottom: 0;
     background-color: #dee2e68a;
@@ -35,28 +46,39 @@
     padding: 10px;
     border-radius: 6px;
     font-size: 20px;
+    backdrop-filter: blur(12px);
 }
-.cart-div p{
+
+.cart-div p {
     margin: 0px;
 }
 
+.bi-bag-heart {
+    margin-right: 5px;
+    font-size: 15px;
+}
 
-.offcanvas-body{
+
+.offcanvas-body {
     background-color: #dee2e6;
 }
-.offcanvas-body div{
+
+.offcanvas-body div {
     position: relative;
 }
-.offcanvas-body div img{
+
+.offcanvas-body div img {
     width: 60%;
     height: 180px;
     border-radius: 10px;
 }
-.offcanvas-body div p{
+
+.offcanvas-body div p {
     margin-bottom: 1px;
     color: black;
 }
-.btn-delete{
+
+.btn-delete {
     position: absolute;
     top: -270px;
     left: 76%;
@@ -69,12 +91,13 @@
     justify-content: center;
     align-items: center;
 }
-.btn-delete i{
+
+.btn-delete i {
     font-size: 20px;
 }
 
-@media screen and (max-width:600px){
-    .cart-div{
+@media screen and (max-width:600px) {
+    .cart-div {
         margin-left: 0%;
     }
 }

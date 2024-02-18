@@ -52,7 +52,8 @@ export class ProductsComponent {
   addToCart(item: product) {
     this.totalCost=0;
     this.cart = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
-    item.productsDetails=new Date().toLocaleDateString();
+    item.productDateChoosed=new Date().toLocaleDateString(); 
+    item.productquantity=1;
     this.cart.push(item);
     localStorage.setItem("products-cart", JSON.stringify(this.cart))
     for (let item of this.cart) {

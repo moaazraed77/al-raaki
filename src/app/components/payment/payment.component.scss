@@ -1,0 +1,70 @@
+.container {
+    background-color: white;
+    position: relative;
+    min-height: 66vh;
+}
+
+.inputs-div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.cart-div-content {
+    display: block;
+    margin-bottom: 70px;
+}
+
+.cart {
+    position: relative;
+}
+
+p::selection,
+img::selection,
+span::selection {
+    background: none;
+}
+
+div img {
+    width: 50%;
+    height: 145px;
+    border-radius: 10px;
+    float: left;
+}
+
+.btn-delete {
+    position: relative;
+    border-radius: 50%;
+    font-weight: 500;
+    height: 30px;
+    width: 30px;
+    color: #ff0606;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: inline-end;
+}
+
+.btn-delete i {
+    font-size: 20px;
+}
+
+.change-quantity {
+    float: inline-start;
+}
+
+span {
+    margin: 5px;
+    font-size: 20px;
+}
+
+.title {
+    font: 1.3em sans-serif;
+    font-weight: 600;
+    font-style: italic;
+}
+
+@media screen and (max-width:600px) {
+    .cart-div {
+        margin-left: 0%;
+    }
+}

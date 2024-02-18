@@ -24,7 +24,8 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideStorage, getStorage } from '@angular/fire/storage'; // write this special code for upload img 
 import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { SafeUrlCutomerViewPipe } from './Modal/pipes/safe-url-cutomer-view.pipe';
-import { EditProductLinkPipe } from './Modal/pipes/edit-product-link.pipe'; // write this special code for upload img 
+import { EditProductLinkPipe } from './Modal/pipes/edit-product-link.pipe';
+import { PaymentComponent } from './components/payment/payment.component'; // write this special code for upload img 
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { EditProductLinkPipe } from './Modal/pipes/edit-product-link.pipe'; // w
     AboutUsComponent,
     SafeUrlCutomerViewPipe,
     EditProductLinkPipe,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
