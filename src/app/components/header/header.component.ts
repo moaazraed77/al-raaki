@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { product } from 'src/app/Modal/interfaces/product.interface';
 import { social } from 'src/app/Modal/interfaces/social.interface';
 import { SocialMediaService } from 'src/app/services/social-media.service';
 
@@ -17,7 +18,7 @@ export class HeaderComponent {
   //       console.log(event.target?.result);  // show the photos before uploading
   //     }
   //   }
-  
+
   // icons form dash 
   whatsapp: social[] = []
   instagram: social[] = []
@@ -25,44 +26,65 @@ export class HeaderComponent {
   youtube: social[] = []
   facebook: social[] = []
 
-  constructor(private iconsServ:SocialMediaService){
+  cart: product[] = []
 
-  // ----------------------- get whatsapp -----------------------
-  iconsServ.getSocialAPI("whats").subscribe(data => {
-    for (const key in data) {
-      this.whatsapp.push(data[key])
-    }
-  })
-  // ----------------------- get instagram -----------------------
-  iconsServ.getSocialAPI("insta").subscribe(data => {
-    for (const key in data) {
-      this.instagram.push(data[key])
-    }
-  })
-  // ----------------------- get snapchat -----------------------
-  iconsServ.getSocialAPI("snapchat").subscribe(data => {
-    for (const key in data) {
-      this.snapchat.push(data[key])
-    }
-  })
-  // ----------------------- get facebook -----------------------
-  iconsServ.getSocialAPI("facebook").subscribe(data => {
-    for (const key in data) {
-      this.facebook.push(data[key])
-    }
-  })
-  // ----------------------- get snapchat -----------------------
-  iconsServ.getSocialAPI("youtube").subscribe(data => {
-    for (const key in data) {
-      this.youtube.push(data[key])
-    }
-  })
-}
+  totalCost: number = 0;
+
+  constructor(private iconsServ: SocialMediaService) {
+
+    // ----------------------- get whatsapp -----------------------
+    iconsServ.getSocialAPI("whats").subscribe(data => {
+      for (const key in data) {
+        this.whatsapp.push(data[key])
+      }
+    })
+    // ----------------------- get instagram -----------------------
+    iconsServ.getSocialAPI("insta").subscribe(data => {
+      for (const key in data) {
+        this.instagram.push(data[key])
+      }
+    })
+    // ----------------------- get snapchat -----------------------
+    iconsServ.getSocialAPI("snapchat").subscribe(data => {
+      for (const key in data) {
+        this.snapchat.push(data[key])
+      }
+    })
+    // ----------------------- get facebook -----------------------
+    iconsServ.getSocialAPI("facebook").subscribe(data => {
+      for (const key in data) {
+        this.facebook.push(data[key])
+      }
+    })
+    // ----------------------- get snapchat -----------------------
+    iconsServ.getSocialAPI("youtube").subscribe(data => {
+      for (const key in data) {
+        this.youtube.push(data[key])
+      }
+    })
+  }
   //----------------------------------------------------------------
 
+  // ----------------------- add to cart -----------------------
+  // ----------------------- add to cart -----------------------
+  addToCart(item: product) {
+    this.totalCost = 0;
+    this.cart = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
+    this.cart.push(item);
+    localStorage.setItem("products-cart", JSON.stringify(this.cart))
+    for (let item of this.cart) {
+      this.totalCost += item.productDiscount;
+    }
+  }
 
-  toggler(event:Event){
-    event.preventDefault()
+  del(itemIndex: number) {
+    this.totalCost = 0;
+    this.cart = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
+    this.cart.splice(itemIndex, 1);
+    localStorage.setItem("products-cart", JSON.stringify(this.cart));
+    for (let item of this.cart) {
+      this.totalCost += item.productDiscount;
+    }
   }
 
 }

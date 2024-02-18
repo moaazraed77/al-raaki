@@ -1,13 +1,42 @@
-<div class="container">
-    <div class="col-lg-4 col-md-2 col-sm-4 p-2 product" *ngFor="let item of products">
+<div class="container pb-5">
+    <div class="col-lg-4 col-md-6 col-sm-4 p-2 product" *ngFor="let item of products;let i=index">
         <img [src]="item.productImage">
         <p class="title text-center">{{item.productsTitle}}</p>
-        <p class="text-center">{{item.productsDetails}}  </p>
+        <p class="text-center">{{item.productsDetails}} </p>
         <div class="text-center">
-            <p><span class="discount text-danger" *ngIf="item.productPrice>0"> {{item.productPrice}} د.ك</span> {{item.productDiscount}} د.ك</p>
-            <a href="https://wa.me/{{temp.social}}?text=مرحباً اريد الحصول علي هذا المنتج : %0aاسم المنتج%20:%20{{item.productsTitle}}%0aتفاصيل المنتج : %20{{item.productsDetails}}%0aالسعر المطلوب%20:%20{{item.productDiscount}} د.ك %0a صورة المنتج :  {{item.productImage| editProductLink}}" *ngFor="let temp of whatsapp" target="_blank" class="btn btn-primary">
-                <button class="btn btn-primary">شراء</button>
+            <p><span class="discount text-danger" *ngIf="item.productPrice>0"> {{item.productPrice}} د.ك</span>
+                {{item.productDiscount}} د.ك</p>
+            <a class="btn btn-primary" (click)="addToCart(item)">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark"
+                    aria-label="Toggle navigation">اضف الي السلة</button>
             </a>
         </div>
+    </div>
+</div>
+<div class="cart-div d-flex justify-content-around align-items-center" *ngIf="totalCost">
+    <p class="price">شراء ( {{totalCost}} د.ك )</p>
+    <button class="btn btn-primary btn-review-cart">Review Cart</button>
+</div>
+
+<!-- favourites products  -->
+<div class="offcanvas offcanvas-end text-bg-danger" tabindex="-1" id="offcanvasNavbarDark"
+    aria-labelledby="offcanvasNavbarDarkLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarDarkLabel">المنتجات المطلوبة <i class="bi bi-bag-heart"></i></h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="text-center" *ngFor="let item of cart;let i=index">
+            <img src="{{item.productImage}}" alt="" class="m-1">
+            <p>{{item.productsTitle}}</p>
+            <p>{{item.productDiscount}} د.ك</p>
+            <p>{{item.productsDetails}}</p>
+            <div class="text-center offcanvas-btns">
+                <button class="btn btn-light btn-delete" (click)="delete(i)"><i class="bi bi-trash3-fill"></i></button>
+            </div>
+        </div>
+        <div class="btn btn-dark text-center mt-3" style="width: 100%;" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark">شراء ( {{totalCost}} د.ك )</div>
     </div>
 </div>

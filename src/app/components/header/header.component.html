@@ -5,8 +5,7 @@
     </div>
     <div class="col-sm-5 div-icons">
       <div class="icon-circle-div">
-        <a href="{{item.social}}" *ngFor="let item of facebook" target="_blank"><i
-            class="bi bi-facebook"></i></a>
+        <a href="{{item.social}}" *ngFor="let item of facebook" target="_blank"><i class="bi bi-facebook"></i></a>
       </div>
       <div class="icon-circle-div">
         <a href="https://wa.me/{{item.social}}" *ngFor="let item of whatsapp" target="_blank"><i
@@ -94,5 +93,8 @@
         </li>
       </ul>
     </div>
+    <h5 type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarDark"
+      aria-controls="offcanvasNavbarDark" aria-label="Toggle navigation"> <i
+        class="bi bi-bag-heart-fill text-light"></i></h5>
   </div>
 </nav>

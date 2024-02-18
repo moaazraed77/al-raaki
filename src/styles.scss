@@ -5,6 +5,7 @@
 [class*="col-"]{
     direction: ltr;
     float: right;
+    width: 100%;
 }
 *{
     transition: .3s;
@@ -29,4 +30,5 @@ button{
     .col-12{
         padding: 2px;
     }
+
 }

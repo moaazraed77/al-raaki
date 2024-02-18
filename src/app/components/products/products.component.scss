@@ -24,3 +24,57 @@
     float: left;
     margin-right: -34%;
 }
+
+
+.cart-div{
+    position: fixed;
+    bottom: 0;
+    background-color: #dee2e68a;
+    width: 80%;
+    margin-left: 10%;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 20px;
+}
+.cart-div p{
+    margin: 0px;
+}
+
+
+.offcanvas-body{
+    background-color: #dee2e6;
+}
+.offcanvas-body div{
+    position: relative;
+}
+.offcanvas-body div img{
+    width: 60%;
+    height: 180px;
+    border-radius: 10px;
+}
+.offcanvas-body div p{
+    margin-bottom: 1px;
+    color: black;
+}
+.btn-delete{
+    position: absolute;
+    top: -270px;
+    left: 76%;
+    border-radius: 50%;
+    font-weight: 500;
+    height: 30px;
+    width: 30px;
+    color: #ff0606;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-delete i{
+    font-size: 20px;
+}
+
+@media screen and (max-width:600px){
+    .cart-div{
+        margin-left: 0%;
+    }
+}

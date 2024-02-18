@@ -52,6 +52,41 @@ span{
 .desktop-view{
     display: block;
 }
+
+
+.offcanvas-body{
+    background-color: #dee2e6;
+}
+.offcanvas-body div{
+    position: relative;
+}
+.offcanvas-body div img{
+    width: 60%;
+    height: 180px;
+    border-radius: 10px;
+}
+.offcanvas-body div p{
+    margin-bottom: 1px;
+    color: black;
+}
+.btn-delete{
+    position: absolute;
+    top: -245px;
+    left: 76%;
+    border-radius: 50%;
+    font-weight: 500;
+    height: 30px;
+    width: 30px;
+    color: #ff0606;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-delete i{
+    font-size: 20px;
+}
+
+
 @media screen and (max-width:600px) {
     .logo{
         height: 130px;
