@@ -18,7 +18,7 @@ export class ProductsComponent {
   cart: product[] = []
 
   totalCost: number = 0;
-  
+
   constructor(private productServ: ProductsService, private iconsServ: SocialMediaService) {
     // if (sessionStorage.getItem("page-attitude") != "products-page-working-fine") {
     //   sessionStorage.setItem("page-attitude", "products-page-working-fine")
@@ -41,7 +41,7 @@ export class ProductsComponent {
       }
     })
 
-    this.totalCost=0;
+    this.totalCost = 0;
     this.cart = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
     for (let item of this.cart) {
       this.totalCost += item.productDiscount;
@@ -50,20 +50,23 @@ export class ProductsComponent {
 
   // ----------------------- add to cart -----------------------
   addToCart(item: product) {
-    this.totalCost=0;
     this.cart = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
-    item.productDateChoosed=new Date().toLocaleDateString(); 
-    item.productquantity=1;
+    item.productDateChoosed = new Date().toLocaleDateString();
+    item.productquantity = 1;
+    if (!this.cart.find(ele => ele.id === item.id)) {
+    this.totalCost = 0;
     this.cart.push(item);
-    localStorage.setItem("products-cart", JSON.stringify(this.cart))
-    for (let item of this.cart) {
-      this.totalCost += item.productDiscount;
+      localStorage.setItem("products-cart", JSON.stringify(this.cart))
+      for (let item of this.cart) {
+        this.totalCost += item.productDiscount;
+      }
+
     }
   }
 
   // ----------------------- delete from cart -----------------------
   delete(itemIndex: number) {
-    this.totalCost=0;
+    this.totalCost = 0;
     this.cart = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
     this.cart.splice(itemIndex, 1);
     localStorage.setItem("products-cart", JSON.stringify(this.cart));

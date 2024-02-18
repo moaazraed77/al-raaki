@@ -18,6 +18,11 @@ nav {
 .flag {
     width: 200px;
     padding-top: 17px;
+
+    width: 80%;
+    padding-top: 17px;
+    height: 149px;
+    border-radius: 10px;
 }
 
 button:focus:not(:focus-visible) {
@@ -67,7 +72,6 @@ span {
     display: block;
 }
 
-
 .offcanvas-body {
     background-color: #dee2e6;
 }
@@ -105,7 +109,6 @@ span {
     font-size: 20px;
 }
 
-
 @media screen and (max-width:600px) {
     .logo {
         height: 130px;
@@ -125,6 +128,8 @@ span {
         width: auto;
         height: 60px;
         margin: 2px auto;
+
+        height: 86px;
     }
 
     .flagDiv {
