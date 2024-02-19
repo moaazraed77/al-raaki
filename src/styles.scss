@@ -2,32 +2,39 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 @import 'ngx-toastr/toastr';
 
-[class*="col-"]{
+[class*="col-"] {
     direction: ltr;
     float: right;
     width: 100%;
 }
-*{
+
+* {
     transition: .3s;
 }
-.col-12{
+
+.col-12 {
     direction: rtl;
     padding: 2px 20px;
 }
-label{
+
+label {
     font-weight: 600;
 }
-form img{
+
+form img {
     margin-top: 15px;
 }
-button{
+
+button {
     font-size: 13px !important;
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
     width: 5px;
 }
+
 @media screen and (max-width:700px) {
-    .col-12{
+    .col-12 {
         padding: 2px;
     }
 
