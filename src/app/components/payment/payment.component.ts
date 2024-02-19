@@ -17,16 +17,19 @@ export class PaymentComponent {
     for (let item of this.cart) {
       this.totalCost += item.productDiscount * item.productquantity!;
     }
+    this.totalCost += 3;
   }
 
   calc(price: number, i: number, value: number) {
-        if ((this.cart[i].productquantity! + value) > 0) {
-        this.cart = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
-        this.totalCost -=  price * this.cart[i].productquantity!;
+    this.totalCost -= 3;
+    if ((this.cart[i].productquantity! + value) > 0) {
+      this.cart = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
+      this.totalCost -= price * this.cart[i].productquantity!;
       this.cart[i].productquantity! += value;
-      this.totalCost +=  price * this.cart[i].productquantity!;
+      this.totalCost += price * this.cart[i].productquantity!;
       localStorage.setItem("products-cart", JSON.stringify(this.cart));
     }
+    this.totalCost += 3;
   }
 
   // ----------------------- delete from cart -----------------------
@@ -38,5 +41,7 @@ export class PaymentComponent {
     for (let item of this.cart) {
       this.totalCost += item.productDiscount * item.productquantity!;
     }
+    if (this.totalCost != 0)
+      this.totalCost += 3;
   }
 }
