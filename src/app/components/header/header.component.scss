@@ -19,10 +19,11 @@ nav {
     width: 200px;
     padding-top: 17px;
 
-    width: 80%;
-    padding-top: 17px;
-    height: 149px;
-    border-radius: 10px;
+    position: absolute;
+    width: 25%;
+    height: 228px;
+    left: 5px;
+    z-index: -1;
 }
 
 button:focus:not(:focus-visible) {
@@ -129,7 +130,12 @@ span {
         height: 60px;
         margin: 2px auto;
 
-        height: 86px;
+        position: absolute;
+    top: 12px;
+    left: 0;
+    z-index: -1;
+        height: 240px;
+        opacity: .35;
     }
 
     .flagDiv {
