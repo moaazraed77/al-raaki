@@ -9,7 +9,8 @@
     </div>
     <div class="form-group">
       <label for="file" class="m-2">اختر الصورة</label>
-      <input type="file" accept=".jpg , .png , .jpeg , .webp " id="file" class="form-control" (change)="upload($event)">
+      <input type="file" accept=".jpg , .png , .jpeg , .webp ,.gif,.avif " id="file" class="form-control"
+        (change)="upload($event)">
       <img [src]="imgPromoURL" alt="" class="image-dash-view" *ngIf="imgPromoURL">
     </div>
     <div class="form-group">
