@@ -1,15 +1,13 @@
 .carousel {
     padding: 0;
-    width: 87%!important;
-    margin-right: 6.5%;
 }
 
 .carousel-item img {
     height: 200px;
     border-radius: 4%;
-    padding: 0px 2.5%;
+    padding: 0px 15px;
     object-fit: fill;
-    
+
 }
 
 .carousel-indicators {
@@ -38,9 +36,13 @@
 
 @media screen and (max-width:600px) {
     .carousel {
-        width: 95%!important;
-        margin-right: 2.5%;
+        margin-top: 5px;
     }
+
+    .carousel-item img {
+        border-radius: 5%;
+    }
+
     .card {
         width: 100%;
     }

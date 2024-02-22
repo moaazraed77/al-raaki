@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { product } from 'src/app/Modal/interfaces/product.interface';
 import { social } from 'src/app/Modal/interfaces/social.interface';
 import { ProductsService } from 'src/app/services/products.service';
@@ -9,7 +10,7 @@ import { SocialMediaService } from 'src/app/services/social-media.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss', '../../Modal/main-style.css']
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnDestroy {
 
   products: product[] = []
 
@@ -19,12 +20,14 @@ export class ProductsComponent {
 
   totalCost: number = 0;
 
+  subscription: Subscription[] = []
+
   constructor(private productServ: ProductsService, private iconsServ: SocialMediaService) {
     // if (sessionStorage.getItem("page-attitude") != "products-page-working-fine") {
     //   sessionStorage.setItem("page-attitude", "products-page-working-fine")
     //   window.location.reload()
     // }
-    this.productServ.getDataAPI().subscribe({
+    this.subscription.push(this.productServ.getDataAPI().subscribe({
       next: data => {
         for (const key in data) {
           this.products.push(data[key])
@@ -32,14 +35,7 @@ export class ProductsComponent {
       },
       error: () => { },
       complete: () => { }
-    })
-
-    // ----------------------- get whatsapp -----------------------
-    iconsServ.getSocialAPI("whats").subscribe(data => {
-      for (const key in data) {
-        this.whatsapp.push(data[key])
-      }
-    })
+    }))
 
     this.totalCost = 0;
     this.cart = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
@@ -54,13 +50,12 @@ export class ProductsComponent {
     item.productDateChoosed = new Date().toLocaleDateString();
     item.productquantity = 1;
     if (!this.cart.find(ele => ele.id === item.id)) {
-    this.totalCost = 0;
-    this.cart.push(item);
+      this.totalCost = 0;
+      this.cart.push(item);
       localStorage.setItem("products-cart", JSON.stringify(this.cart))
       for (let item of this.cart) {
         this.totalCost += item.productDiscount;
       }
-
     }
   }
 
@@ -72,6 +67,12 @@ export class ProductsComponent {
     localStorage.setItem("products-cart", JSON.stringify(this.cart));
     for (let item of this.cart) {
       this.totalCost += item.productDiscount;
+    }
+  }
+
+  ngOnDestroy(): void {
+    for (const item of this.subscription) {
+      item.unsubscribe()
     }
   }
 

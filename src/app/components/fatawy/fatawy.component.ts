@@ -1,5 +1,6 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnDestroy } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { fatawy } from 'src/app/Modal/interfaces/fatawy.interface';
 import { FatawyService } from 'src/app/services/fatawy.service';
 
@@ -8,11 +9,13 @@ import { FatawyService } from 'src/app/services/fatawy.service';
   templateUrl: './fatawy.component.html',
   styleUrls: ['./fatawy.component.scss']
 })
-export class FatawyComponent {
+export class FatawyComponent implements OnDestroy{
 
   play:number=0;
 
   dataList:fatawy[]=[]
+
+  subscription: Subscription[] = []
 
   constructor(private fatawyServ:FatawyService, private toastr:ToastrService){
 
@@ -21,11 +24,11 @@ export class FatawyComponent {
     //   window.location.reload()
     // }
 
-    fatawyServ.getDataAPI().subscribe(data=>{
+    this.subscription.push(fatawyServ.getDataAPI().subscribe(data=>{
       for (const key in data) {
         this.dataList.push(data[key])
       }
-    })
+    }))
   }
 
   showToastr(id:number){
@@ -33,4 +36,9 @@ export class FatawyComponent {
     // this.toastr.success("يتم تحميل الفتوي حاليا يرجي الانتظار")
   }
 
+  ngOnDestroy(): void {
+    for (const item of this.subscription) {
+      item.unsubscribe()
+    }
+  }
 }
