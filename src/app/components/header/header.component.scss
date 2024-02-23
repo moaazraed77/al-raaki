@@ -131,9 +131,9 @@ span {
         margin: 2px auto;
 
         position: absolute;
-    top: 12px;
-    left: 0;
-    z-index: -1;
+        top: 12px;
+        left: 0;
+        z-index: -1;
         height: 240px;
         opacity: .35;
     }
@@ -144,6 +144,10 @@ span {
         width: 100%;
     }
 
+
+}
+
+@media screen and (max-width:991px) {
     .mobile-view {
         display: block;
     }
