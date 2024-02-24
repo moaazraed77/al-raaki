@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
+    min-height: 50px;
 }
 
 .product {
@@ -39,7 +40,7 @@ div a {
 
 .cart-div {
     position: fixed;
-    bottom: 0;
+    bottom: 1px;
     background-color: #dee2e68a;
     width: 80%;
     margin-left: 10%;
@@ -98,6 +99,13 @@ div a {
 
 @media screen and (max-width:600px) {
     .cart-div {
-        margin-left: 0%;
+        margin-left: 1%;
+        padding: 7px 0px ;
+    }
+
+    .cart-div p {
+        font-size: .87rem;
+        text-align: center;
+        margin: 3px;
     }
 }

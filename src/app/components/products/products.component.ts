@@ -4,6 +4,7 @@ import { product } from 'src/app/Modal/interfaces/product.interface';
 import { social } from 'src/app/Modal/interfaces/social.interface';
 import { ProductsService } from 'src/app/services/products.service';
 import { SocialMediaService } from 'src/app/services/social-media.service';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-products',
@@ -42,6 +43,9 @@ export class ProductsComponent implements OnDestroy {
     for (let item of this.cart) {
       this.totalCost += item.productDiscount;
     }
+
+    AOS.init();
+
   }
 
   // ----------------------- add to cart -----------------------
@@ -68,6 +72,7 @@ export class ProductsComponent implements OnDestroy {
     for (let item of this.cart) {
       this.totalCost += item.productDiscount;
     }
+
   }
 
   ngOnDestroy(): void {

@@ -1,10 +1,9 @@
 <div class="col-12 container ">
-    <ng-container>
-        <div class="col-lg-4 col-md-2 col-sm-4 p-2 d-flex justify-content-center flex-wrap text-center"  *ngFor="let item of dataList">
-            <iframe [src]="item.url | safeUrlCutomerView" frameborder="0"></iframe>
-            <p class="title">{{item.title}} </p>
-        </div>
-    </ng-container>
+    <div class="col-lg-4 col-md-2 col-sm-4 p-2 d-flex justify-content-center flex-wrap text-center"
+        *ngFor="let item of dataList">
+        <iframe [src]="item.url | safeUrlCutomerView" frameborder="0"></iframe>
+        <p class="title">{{item.title}} </p>
+    </div>
     <!-- <div class="col-lg-12 p-2 d-flex justify-content-center flex-wrap text-center loading-div">
         <img src="assets/loading-1.gif" alt="">
     </div> -->

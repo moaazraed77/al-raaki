@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { visit } from 'src/app/Modal/interfaces/visit.interface';
 import { VisitsService } from 'src/app/services/visits.service';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-visits',
@@ -29,6 +30,9 @@ export class VisitsComponent implements OnDestroy {
       error: () => { this.toastr.error("Error Connection ", " Data Incompleted"); },
       complete: () => {    }
     }))
+
+    AOS.init();
+
   }
 
   ngOnDestroy(): void {

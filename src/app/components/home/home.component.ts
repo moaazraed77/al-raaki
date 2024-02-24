@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { images } from 'src/app/Modal/interfaces/images.interface';
 import { HomeDataService } from 'src/app/services/home-data.service';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-home',
@@ -43,6 +44,8 @@ export class HomeComponent implements OnDestroy {
       error: () => { this.toastr.error("Error Connection ", " Data Incompleted"); },
       complete: () => { }
     }))
+
+    AOS.init();
   }
 
   ngOnDestroy(): void {
