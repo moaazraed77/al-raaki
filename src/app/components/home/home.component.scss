@@ -2,8 +2,10 @@
     padding: 0;
 }
 
-.carousel-item.active {
-    z-index: 5;
+.carousel-item.active,
+.carousel-control-prev,
+.carousel-control-next {
+    z-index: 3;
 }
 
 .carousel-item img {
