@@ -2,12 +2,15 @@
     padding: 0;
 }
 
+.carousel-item.active {
+    z-index: 5;
+}
+
 .carousel-item img {
     height: 200px;
     border-radius: 4%;
     padding: 0px 15px;
     object-fit: fill;
-
 }
 
 .carousel-indicators {

@@ -29,7 +29,7 @@
           [attr.data-bs-slide-to]="i" [ngClass]="{'active' : i == 0}" aria-current="true" aria-label="Slide 1"></button>
       </div> -->
       <div class="carousel-inner">
-        <div class="carousel-item" [ngClass]="{'active':i==0}" *ngFor="let item of dataListMoving;let i=index">
+        <div class="carousel-item" *ngFor="let item of dataListMoving;let i=index" [ngClass]="{'active':i==0}">
           <img [src]="item.img" class="d-block w-100" alt="...">
         </div>
 
