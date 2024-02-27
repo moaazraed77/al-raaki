@@ -25,7 +25,8 @@ import { provideStorage, getStorage } from '@angular/fire/storage'; // write thi
 import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { SafeUrlCutomerViewPipe } from './Modal/pipes/safe-url-cutomer-view.pipe';
 import { EditProductLinkPipe } from './Modal/pipes/edit-product-link.pipe';
-import { PaymentComponent } from './components/payment/payment.component'; // write this special code for upload img 
+import { PaymentComponent } from './components/payment/payment.component';
+import { VisualsComponent } from './components/visuals/visuals.component'; // write this special code for upload img 
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { PaymentComponent } from './components/payment/payment.component'; // wr
     SafeUrlCutomerViewPipe,
     EditProductLinkPipe,
     PaymentComponent,
+    VisualsComponent,
   ],
   imports: [
     BrowserModule,
