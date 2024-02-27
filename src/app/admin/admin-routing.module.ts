@@ -10,6 +10,7 @@ import { ProductsComponent } from './products/products.component';
 import { SoundsComponent } from './sounds/sounds.component';
 import { VisitsComponent } from './visits/visits.component';
 import { SocialIconsComponent } from './social-icons/social-icons.component';
+import { VisualsComponent } from './visuals/visuals.component';
 
 const routes: Routes = [
   { path: "admin-login-dash", component: LoginDashComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: "home-dash", component: HomeComponent },
       { path: "products-dash", component: ProductsComponent },
       { path: "sounds-dash", component: SoundsComponent },
+      { path: "visuals-dash", component: VisualsComponent },
       { path: "visits-dash", component: VisitsComponent },
       { path: "social-icons-dash", component: SocialIconsComponent },
     ]

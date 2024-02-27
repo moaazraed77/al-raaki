@@ -1,6 +1,6 @@
 <div class="col-12">
   <button class="btn btn-info m-2" (click)="controlView='add-data';resetView();"> اضافة </button>
-  <button class="btn btn-secondary m-2" (click)="getData();" [disabled]="controlView=='show-data'"> عرض المحتوي</button>
+  <button class="btn btn-secondary m-2" (click)="getData();showVideoPromo = false;" [disabled]="controlView=='show-data'"> عرض المحتوي</button>
 
   <form [formGroup]="sound" *ngIf="controlView=='add-data' || controlView=='edit-data'" (ngSubmit)="submit()">
     <div class="text-center pt-2">
@@ -29,11 +29,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of soundArray">
-        <th scope="row">1</th>
+      <tr *ngFor="let item of soundArray; let i= index">
+        <th scope="row">{{i+1}}</th>
         <td> <iframe [src]="item.url | safe" frameborder="0"></iframe></td>
-        <td class="title">{{item.title}}</td>
-        <td>
+        <td class="title pt-4">{{item.title}}</td>
+        <td class="pt-4">
           <button class="btn btn-warning m-1" (click)="edit(item);controlView='edit-data'"><i
               class="bi bi-pencil-square"></i></button>
           <button class="btn btn-danger m-1" (click)="deletedItem=item" data-bs-toggle="modal"
@@ -51,7 +51,7 @@
       <div class="modal-header">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body d-flex justify-content-center  align-items-center flex-wrap">
+      <div class="modal-body text-center">
         <p class="title">{{deletedItem.title}}</p>
         <iframe [src]="deletedItem.url | safe" frameborder="0"></iframe>
       </div>

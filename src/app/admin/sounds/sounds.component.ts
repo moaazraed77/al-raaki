@@ -63,30 +63,35 @@ export class SoundsComponent {
   }
 
   async setYoutubeURL() {
-    if (this.sound.value.url?.startsWith("https://youtu.be/")){
-       this.sound.patchValue({
+    if (this.sound.value.url?.startsWith("https://youtu.be/")) {
+      this.sound.patchValue({
         url: `https://www.youtube.com/embed/${this.sound.value.url?.slice(("https://youtu.be/").length, this.sound.value.url.indexOf("?"))}`
-      })}else{
-        this.sound.patchValue({
-          url: `https://www.youtube.com/embed/${this.sound.value.url?.slice(this.sound.value.url.indexOf("=") + 1, this.sound.value.url.length)}`
-        })
-      }
-      
+      })
+    } else {
+      this.sound.patchValue({
+        url: `https://www.youtube.com/embed/${this.sound.value.url?.slice(this.sound.value.url.indexOf("=") + 1, this.sound.value.url.length)}`
+      })
+    }
+
     this.showVideoPromo = true
     if (this.sound.value.url === "https://www.youtube.com/embed/")
       this.resetURL()
   }
 
 
-  async submit() {
+  submit() {
     if (this.sound.valid && this.controlView === "add-data") {
-      this.soundServ.postSoundData(this.sound.value)
+      this.soundServ.postSoundData(this.sound.value).then(() => {
+        this.resetView()
+      })
     } else if (this.sound.valid && this.controlView === "edit-data") {
-      await this.soundServ.editData(this.sound.value)
+      this.soundServ.editData(this.sound.value).then(() => {
+        this.resetView()
+      })
     } else {
-      this.toastr.error("راجع بيانات المحتوي");
+      this.toastr.error("البيانات غير مكتملة ");
+      this.resetView()
     }
-    this.resetView()
   }
 
   edit(item: any) {

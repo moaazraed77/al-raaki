@@ -1,4 +1,5 @@
 export interface images{
     id:number,
-    img:string
+    img:string,
+    URL?:string
 }

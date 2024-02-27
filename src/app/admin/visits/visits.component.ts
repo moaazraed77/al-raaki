@@ -70,15 +70,21 @@ export class VisitsComponent {
 
   // submit  Data on firebase 
   async submitImage() {
-    this.toastr.info("يتم رفع الصورة حاليا", "يرجي الانتظار")
-    if (this.imgPromoURL != "")
+    if (this.imgPromoURL != "") {
       await this.uploadFile(this.imageFile)  // wait until file is uploaded
-    if (this.imgPromoURL && this.controlView === "add-data") {
-      await this.visitsServ.postVisitData(this.visit.value!)
-    } else if (this.controlView === "edit-data") {
-      await this.visitsServ.editData(this.editObjectPromo, this.visit.value)
+      this.toastr.info("يتم رفع الصورة حاليا", "يرجي الانتظار")
     }
-    this.resetData()
+    if (this.imgPromoURL && this.controlView === "add-data") {
+      this.visitsServ.postVisitData(this.visit.value!).then(() => {
+        this.resetData()
+      })
+    } else if (this.controlView === "edit-data") {
+      this.visitsServ.editData(this.editObjectPromo, this.visit.value).then(() => {
+        this.resetData()
+      })
+    } else {
+      this.toastr.error("راجع بيانات المحتوي");
+    }
   }
 
   // -------------- funcion to upload img file and get image url ---- on firebase --------------

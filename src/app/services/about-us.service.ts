@@ -20,13 +20,13 @@ export class AboutUsService {
     return this.http.get<aboutUS[]>(`${this.url}/aboutUS.json`);
   }
 
-  postAboutData(data: any) {
+  async postAboutData(data: any) {
     this.http.post(`${this.url}/aboutUS.json`, data).subscribe(() => {
       this.toastr.success("تمت الاضافة المحتوي ")
     })
   }
 
-  editData(item: any) {
+  async editData(item: any) {
     this.getDataAPI().subscribe({
       next: data => {
         for (const key in data) {

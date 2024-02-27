@@ -37,18 +37,19 @@ export class HomeDataService {
   }
 
   // edit  data on the server 
-  editData(olditem: images, newItem:any ,type: string) {
+  async editData(olditem: images, newItem:any ,type: string) {
     this.getDataAPI(type).subscribe({
       next: data => {
         for (const key in data) {
           if(olditem.id==data[key].id){
             olditem.img=newItem.img;
+            // olditem.URL=newItem.URL;   // removing the link of the photo
             this.http.put(`${this.url}/${type}/${key}.json`,olditem).subscribe()
           }
         }
       },
       error: () => { this.toastr.error("Error Connection ", " Data Incompleted"); },
-      complete: () => {  this.toastr.warning("تم تعديل الصورة ")  }
+      complete: () => {  this.toastr.warning("تم تعديل الصورة ");}
     })
   }
   

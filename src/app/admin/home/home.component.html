@@ -24,7 +24,7 @@
   </form>
 
   <!-- adding & edit static images -->
-  <form action="" *ngIf="controlView=='add-data-static' || controlView=='edit-data-static'"
+  <form [formGroup]="staticImage" *ngIf="controlView=='add-data-static' || controlView=='edit-data-static'"
     (ngSubmit)="submitStaticImage()">
     <div class="text-center">
       <img [src]="editObjectPromo.img" alt="" class="image-dash-view" *ngIf="editObjectPromo">
@@ -33,8 +33,12 @@
     <input type="file" accept=".jpg , .png , .jpeg , .webp ,.gif,.avif" id="file" class="form-control pt-2"
       (change)="uploadStaticImage($event)">
     <img [src]="imgStacticPromoURL" alt="" class="image-dash-view" *ngIf="imgStacticPromoURL">
+    <!-- <div class="form-group">
+      <label for="url" class="m-2">اضف الرابط</label>
+      <input type="url" id="url" class="form-control" formControlName="URL" placeholder=".....">
+    </div> -->
     <div class="text-center pt-2">
-      <button class="btn btn-primary" *ngIf="imgStacticPromoURL">حفظ</button>
+      <button class="btn btn-primary" *ngIf="imgStacticPromoURL || controlView== 'edit-data-static' ">حفظ</button>
     </div>
   </form>
 

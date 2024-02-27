@@ -34,6 +34,7 @@ export class HomeComponent {
   staticImage = this.formBuilder.group({
     id: [new Date().getTime()],
     img: ["", Validators.required],
+    // URL: ["", Validators.required],  // removing the link of the photo
   })
   movingImage = this.formBuilder.group({
     id: [new Date().getTime()],
@@ -49,6 +50,7 @@ export class HomeComponent {
     this.staticImage.patchValue({
       id: new Date().getTime(),
       img: "",
+      // URL: "",  // removing the link of the photo
     })
     this.movingImage.patchValue({
       id: new Date().getTime(),
@@ -99,6 +101,7 @@ export class HomeComponent {
       this.imgMovmentSize = false;
     }
   }
+
   // promo image upload to show which files uploaded and the size of each photo
   uploadStaticImage(event: any) {
     this.imgStacticFile = event.target.files[0];
@@ -116,6 +119,8 @@ export class HomeComponent {
     this.imgStacticSize = true;
   }
 
+
+
   // submit Movment Data on firebase 
   async submitMovmentImage() {
     this.toastr.info("يتم رفع الصورة حاليا", "يرجي الانتظار")
@@ -127,6 +132,7 @@ export class HomeComponent {
       this.setEditValueOnServer("homeDataCarasouel")
     }
   }
+
   // submit Static Data on firebase 
   async submitStaticImage() {
     this.toastr.info("يتم رفع الصورة حاليا", "يرجي الانتظار")
@@ -138,6 +144,8 @@ export class HomeComponent {
       this.setEditValueOnServer("homeDataStatic")
     }
   }
+
+
 
   // -------------- funcion to upload img file and get image url ---- on firebase --------------
   async uploadFile(file: any, type: string) {
@@ -164,16 +172,27 @@ export class HomeComponent {
       this.controlView = "edit-data-moving";
     }
     else {
-      this.editObjectPromo = item
-      this.controlView = "edit-data-static"
+      this.editObjectPromo = item;
+      this.controlView = "edit-data-static";
+      this.staticImage.patchValue({
+        id: item.id,
+        img: item.img,
+        // URL: item.URL  // removing the link of the photo
+      })
     }
   }
-  setEditValueOnServer(type: string) {
-    this.firestorage.storage.refFromURL(this.editObjectPromo.img).delete() // to delete the file from Firebase Storage
+
+  async setEditValueOnServer(type: string) {
+    // removing the link of the photo
+    // if ((this.editObjectPromo.img != this.staticImage.value?.img) || type === "homeDataCarasouel")
+      this.firestorage.storage.refFromURL(this.editObjectPromo.img).delete() // to delete the file from Firebase Storage
     if (type === "homeDataCarasouel")
-      this.homeDataServ.editData(this.editObjectPromo, this.movingImage.value, type)
+      this.homeDataServ.editData(this.editObjectPromo, this.movingImage.value, type).then(() => {
+      })
     else if (type === "homeDataStatic")
-      this.homeDataServ.editData(this.editObjectPromo, this.staticImage.value, type)
+      this.homeDataServ.editData(this.editObjectPromo, this.staticImage.value, type).then(() => {
+        this.resetView()
+      })
   }
 
   set_delete(item: images, type: string) {
