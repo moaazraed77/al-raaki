@@ -109,7 +109,7 @@ export class SoundsComponent {
         for (const key in data) {
           if (item.id == data[key].id) {
             this.http.delete(`${this.soundServ.url}/sound/${key}.json`).subscribe(() => {
-              this.toastr.success("تم حذف الصورة ");
+              this.toastr.success("تم حذف الفيديو ");
               this.getData()
             });
             break;

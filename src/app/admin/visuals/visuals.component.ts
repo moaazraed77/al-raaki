@@ -107,7 +107,7 @@ export class VisualsComponent  {
         for (const key in data) {
           if (item.id == data[key].id) {
             this.http.delete(`${this.visualsServ.url}/visuals/${key}.json`).subscribe(() => {
-              this.toastr.success("تم حذف الصورة ");
+              this.toastr.success("تم حذف الفيديو ");
               this.getData()
             });
             break;
