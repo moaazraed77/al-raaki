@@ -8,6 +8,8 @@ import { SoundsComponent } from './components/sounds/sounds.component';
 import { VisitsComponent } from './components/visits/visits.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { VisualsService } from './services/visuals.service';
+import { VisualsComponent } from './components/visuals/visuals.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
@@ -17,7 +19,7 @@ const routes: Routes = [
   {path:"payment",component:PaymentComponent},
   {path:"products",component:ProductsComponent},
   {path:"sounds",component:SoundsComponent},
-  {path:"visuals",component:SoundsComponent},
+  {path:"visuals",component:VisualsComponent},
   {path:"visits",component:VisitsComponent},
 ];
 

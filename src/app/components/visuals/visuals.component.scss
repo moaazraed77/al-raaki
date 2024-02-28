@@ -1,0 +1,25 @@
+.container{
+    background-color: white;
+    width: 100%;
+    margin-top: 0px !important;
+    max-width: 100%;
+    min-height: 50px;
+}
+
+iframe {
+    height: 250px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.loading-div img {
+    height: 350px;
+    border-radius: 15px;
+}
+
+@media screen and (max-width:600px) {
+    .loading-div img {
+        height: auto;
+        width: 100%;
+    }
+}

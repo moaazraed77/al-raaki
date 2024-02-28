@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { sound } from 'src/app/Modal/interfaces/sound..interface';
+import { visuals } from 'src/app/Modal/interfaces/visuals.interface';
 import { VisualsService } from 'src/app/services/visuals.service';
 
 @Component({
@@ -11,17 +11,17 @@ import { VisualsService } from 'src/app/services/visuals.service';
 })
 export class VisualsComponent implements OnDestroy {
 
-  dataList: sound[] = [];
+  dataList: visuals[] = [];
 
   subscription: Subscription[] = []
 
-  constructor(private soundServ: VisualsService, private toastr: ToastrService) {
-    // if (sessionStorage.getItem("page-attitude") != "sounds-page-working-fine") {
-    //   sessionStorage.setItem("page-attitude", "sounds-page-working-fine")
+  constructor(private visualsServ: VisualsService, private toastr: ToastrService) {
+    // if (sessionStorage.getItem("page-attitude") != "visualss-page-working-fine") {
+    //   sessionStorage.setItem("page-attitude", "visualss-page-working-fine")
     //   window.location.reload()
     // }
 
-    this.subscription.push(soundServ.getDataAPI().subscribe({
+    this.subscription.push(visualsServ.getDataAPI().subscribe({
       next: data => {
         for (const key in data) {
           this.dataList.push(data[key])
