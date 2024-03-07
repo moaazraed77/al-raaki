@@ -27,6 +27,7 @@ import { SafeUrlCutomerViewPipe } from './Modal/pipes/safe-url-cutomer-view.pipe
 import { EditProductLinkPipe } from './Modal/pipes/edit-product-link.pipe';
 import { PaymentComponent } from './components/payment/payment.component';
 import { VisualsComponent } from './components/visuals/visuals.component'; // write this special code for upload img 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,8 @@ import { VisualsComponent } from './components/visuals/visuals.component'; // wr
     BrowserModule,
     AdminModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
       positionClass: "toast-top-left"

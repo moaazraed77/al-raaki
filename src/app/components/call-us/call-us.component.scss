@@ -1,9 +1,15 @@
 
 .col-12{
-    background-color: gainsboro;
+    background-color: rgb(208 228 229);
 }
 
 label{
-    font-size: 1.3em;
+    font-size: 1.2em;
     margin: 5px 3px;
+}
+
+@media screen and (max-width:700px) {
+    label{
+        font-size: 1em;
+    }
 }

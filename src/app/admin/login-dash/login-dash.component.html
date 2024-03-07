@@ -1,5 +1,5 @@
 
-<div class="col-12 d-flex justify-content-center align-items-center dashlogin pt-5">
+<div class="col-12 d-flex justify-content-center align-items-center dashlogin pt-4">
     <form class="col-lg-4 card p-3" [formGroup]="login" (submit)="submit()">
         <img src="assets/login1.png" alt="" width="100%" height="180px" style="border-radius: 7px; margin-bottom: 10px;">
         <div class="mb-3">
@@ -12,7 +12,7 @@
         </div>
           <button type="submit" class="btn btn-dark">login</button>
         <div class="col-12">
-          <p class="alert alert-danger" *ngIf="error"> invalid data for login</p>
+          <p class="alert alert-danger text-center" *ngIf="error"> invalid data for login</p>
         </div>
       </form>
 </div>

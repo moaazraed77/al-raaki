@@ -7,7 +7,7 @@ import { VisualsService } from 'src/app/services/visuals.service';
 @Component({
   selector: 'app-visuals',
   templateUrl: './visuals.component.html',
-  styleUrls: ['./visuals.component.scss']
+  styleUrls: ['./visuals.component.scss', '../../Modal/main-style.css']
 })
 export class VisualsComponent implements OnDestroy {
 

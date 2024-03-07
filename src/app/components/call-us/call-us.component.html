@@ -1,25 +1,28 @@
 <div class="col-12">
-    <form action="" class="container">
+    <form [formGroup]="callUS" class="container">
         <div class="form-group m-2">
             <label for="email">الايميل <span class="text-danger">*</span></label>
-            <input type="email" class="form-control" placeholder="Enter your email">
+            <input type="email" class="form-control" placeholder="Enter your email" formControlName="email">
         </div>
         <div class="form-group m-2">
-            <label for="email">نوع الرسالة <span class="text-danger">*</span></label>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>- اختر نوع الرسالة - </option>
-                <option value="1">اقتراح</option>
-                <option value="2">استفسار</option>
-                <option value="3">تنبية</option>
-              </select>
+            <label for="type">نوع الرسالة <span class="text-danger">*</span></label>
+            <select class="form-select" aria-label="Default select example" formControlName="type">
+                <option selected value="">- اختر نوع الرسالة - </option>
+                <option value="اقتراح">اقتراح</option>
+                <option value="استفسار">استفسار</option>
+                <option value="تنبية">تنبية</option>
+            </select>
         </div>
         <div class="form-group m-2">
             <label for="msg">ادخل نص الرسالة <span class="text-danger">*</span></label>
-            <textarea name="msg" id="msg" cols="30" rows="7" class="form-control"></textarea>
+            <textarea name="msg" id="msg" cols="30" rows="7" class="form-control" formControlName="msg"></textarea>
         </div>
 
         <div class="text-center">
-            <div class="btn btn-primary mb-4">ارسل الرسالة </div>
+            <a href="https://wa.me/{{item.social}}?text=السلام عليكم ورحمة الله . %0a نوع الرسالة : {{callUS.value.type}} %0a محتوي الرسالة :%0a {{callUS.value.msg}} %0a : ايميل %0a{{callUS.value.email}}" *ngFor="let item of whatsapp" target="_blank"
+                class="btn btn-success mb-4">ارسال <i class="bi bi-whatsapp"></i></a>
         </div>
     </form>
+
+
 </div>

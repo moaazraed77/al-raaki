@@ -8,4 +8,11 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class AdminComponent {
 
+  constructor(private route:Router){}
+
+  signOut(){
+    sessionStorage.removeItem("Admin")
+    this.route.navigate(["/"])
+  }
+
 }
