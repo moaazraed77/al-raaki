@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AdminAuthService } from 'src/app/services/admin-auth.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { AdminAuthService } from 'src/app/services/admin-auth.service';
 })
 export class LoginDashComponent {
 
-  constructor(private formBuilder:FormBuilder , private authService:AdminAuthService, private route:Router){}
+  constructor(private formBuilder:FormBuilder , private authService:AdminAuthService, private route:Router, private toastr:ToastrService){}
 
   error:boolean=false;
   
@@ -21,6 +22,7 @@ export class LoginDashComponent {
 
   submit(){
     this.authService.signIN(this.login.value).then(()=>{
+      this.toastr.success("تم تسجيل الدخول بنجاح")
       this.route.navigate(["/admin"])
       this.error=false
     }).catch(()=>{
