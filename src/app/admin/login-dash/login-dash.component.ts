@@ -27,6 +27,7 @@ export class LoginDashComponent {
       this.error=false
     }).catch(()=>{
       this.error=true
+      this.toastr.error("خطاء في الايميل او كلمة المرور")
     })
   }
 }
