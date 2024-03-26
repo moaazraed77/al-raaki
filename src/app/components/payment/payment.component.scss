@@ -7,6 +7,7 @@
 .inputs-div {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    display: block;
 }
 
 .cart-div-content {
@@ -16,6 +17,11 @@
 
 .cart {
     position: relative;
+}
+
+input,
+input::placeholder {
+    text-align: center;
 }
 
 p::selection,
@@ -57,7 +63,7 @@ span {
     font-size: 20px;
 }
 
-small{
+small {
     font-weight: 600;
 }
 
@@ -67,8 +73,22 @@ small{
     font-style: italic;
 }
 
+a{
+    color: white;
+    text-decoration: none;
+}
+
+.alert-danger{
+    margin-top: 10px;
+    padding: 0.5em 1em;
+    text-align: center;
+}
 @media screen and (max-width:600px) {
     .cart-div {
         margin-left: 0%;
+    }
+
+    .inputs-div{
+        display: block;
     }
 }

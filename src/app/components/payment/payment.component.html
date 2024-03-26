@@ -17,48 +17,60 @@
                             class="bi bi-trash3-fill"></i></button>
                 </div>
             </div>
-            <div class="btn btn-dark text-center mt-1" style="width: 100%;" type="button">شراء ( {{totalCost}} د.ك )
-            </div>
-            <div class="text-center">
-                <small class="text-danger">* سيتم اضافة 3 دينار رسوم توصيل *</small>
-            </div>
         </div>
         <div class="col-sm-7 pt-4">
             <h4 class="m-2 ml-4">Enter your delivery details </h4>
-            <form action="">
-                <div class="inputs-div">
-                    <div class="form-group m-2">
-                        <input type="text" class="form-control" placeholder="phone ">
+            <form [formGroup]="address">
+                <div class="inputs-div pt-2">
+                    <div class="form-group m-2 mb-3">
+                        <input type="text" class="form-control" formControlName="phone" (keyup)="viewRealWatsApp()"
+                            placeholder="رقم الهاتف  ">
                     </div>
-                    <div class="form-group m-2">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>-- country -- </option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                    <div class="form-group m-2 mb-3">
+                        <input type="text" class="form-control" formControlName="country" (keyup)="viewRealWatsApp()"
+                            placeholder="الدولة ">
                     </div>
-                    <div class="form-group m-2">
-                        <input type="text" class="form-control" placeholder="Area ">
+                    <div class="form-group m-2 mb-3">
+                        <input type="text" class="form-control" formControlName="area" (keyup)="viewRealWatsApp()"
+                            placeholder="المنطقة ">
                     </div>
-                    <div class="form-group m-2">
-                        <input type="text" class="form-control" placeholder="Block ">
+                    <div class="form-group m-2 mb-3">
+                        <input type="text" class="form-control" formControlName="street" (keyup)="viewRealWatsApp()"
+                            placeholder="الشارع ">
                     </div>
-                    <div class="form-group m-2">
-                        <input type="text" class="form-control" placeholder="Street ">
+                    <div class="form-group m-2 mb-3">
+                        <input type="text" class="form-control" formControlName="home" (keyup)="viewRealWatsApp()"
+                            placeholder="المنزل ">
                     </div>
-                    <div class="form-group m-2">
-                        <input type="text" class="form-control" placeholder="House ">
-                    </div>
-                    <div class="form-group m-2">
+                    <!-- <div class="form-group m-2 mb-3">
+                        <input type="text" class="form-control" placeholder="الحي ">
+                    </div> -->
+                    <!-- <div class="form-group m-2">
                         <input type="text" class="form-control" placeholder="Avenue ">
-                    </div>
+                    </div> -->
                 </div>
                 <!-- <div class="text-center m-2">
                     <button class="btn btn-primary" type="submit"> Pay Now</button>
                 </div> -->
             </form>
         </div>
+        <div class="text-center col-12">
+            <small class="text-danger">* سيتم اضافة 3 دينار رسوم توصيل *</small>
+        </div>
+
+        <div class="col-12 btn btn-dark m-1" *ngIf="fakeWhatsappButton" (click)="errorMsg()">شراء ( {{totalCost}} د.ك )</div>
+
+        <div class="col-12 alert alert-danger" *ngIf="showAlertMsg && fakeWhatsappButton">خطاء , يرجي اكمال بياناتك</div>
+        
+        <ng-container *ngIf="!fakeWhatsappButton">
+            <a class="col-12" href="https://wa.me/{{item.social}}?text={{whatsappDataLinkMsg}}"
+                *ngFor="let item of whatsapp" target="_blank">
+                <div class="btn btn-dark text-center mt-1" style="width: 100%;" type="button"
+                    (click)="whatsappDataLinkFun()">شراء ( {{totalCost}} د.ك )
+                </div>
+            </a>
+        </ng-container>
+        
         <hr class="col-12">
         <div class="col-12 d-flex justify-content-end flex-wrap">
             <div class="col-sm-7">
