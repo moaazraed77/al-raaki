@@ -40,7 +40,7 @@ export class AdminComponent implements OnInit {
           labels: data.map(row => row.day),
           datasets: [
             {
-              label: 'a Incremental evaluation per day',
+              label: `a Incremental evaluation for `,
               data: data.map(row => row.count)
             }
           ]
