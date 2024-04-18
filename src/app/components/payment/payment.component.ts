@@ -29,8 +29,9 @@ export class PaymentComponent {
   address = this.formbuilder.group({
     phone: ["", Validators.required],
     country: ["", Validators.required],
-    street: ["", Validators.required],
     area: ["", Validators.required],
+    gadah: [""],
+    street: ["", Validators.required],
     home: ["", Validators.required],
   })
 
@@ -80,9 +81,15 @@ export class PaymentComponent {
       for (const temp of this.whatsappDataLink) {
         msg += `%0A اسم المنتج : ${temp.productsTitle} %0A الكمية المطلوبة : ${temp.productquantity} %0A `;
       }
-      this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي هذه المنتجات : %0A ${msg} %0A  السعر الكلي شامل خدمة التوصيل  : ${this.totalCost} د.ك `
+      if(this.address.value.gadah)
+      this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي هذه المنتجات : %0A ${msg} %0A  السعر الكلي شامل خدمة التوصيل  : ${this.totalCost} د.ك %0A  العنوان : %0A  دولة : ${this.address.value.country} , منطقة : ${this.address.value.area} , الجاده :  ${this.address.value.gadah} , شارع : ${this.address.value.street} , منزل :  ${this.address.value.home} %0A رقم الهاتف : ${this.address.value.phone}`
+      else
+      this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي هذه المنتجات : %0A ${msg} %0A  السعر الكلي شامل خدمة التوصيل  : ${this.totalCost} د.ك %0A  العنوان : %0A  دولة : ${this.address.value.country} , منطقة : ${this.address.value.area} , شارع : ${this.address.value.street} , منزل :  ${this.address.value.home} %0A رقم الهاتف : ${this.address.value.phone}`
     } else if (this.whatsappDataLink.length == 1) {
-      this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي المنتج : %0A اسم المنتج :  ${this.whatsappDataLink[0].productsTitle} %0A الكمية المطلوبة : ${this.whatsappDataLink[0].productquantity} %0A   السعر الكلي شامل خدمة التوصيل  : ${this.totalCost} د.ك`
+      if(this.address.value.gadah)
+      this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي المنتج : %0A اسم المنتج :  ${this.whatsappDataLink[0].productsTitle} %0A الكمية المطلوبة : ${this.whatsappDataLink[0].productquantity} %0A   السعر الكلي شامل خدمة التوصيل  : ${this.totalCost} د.ك د.ك %0A  العنوان : %0A  دولة : ${this.address.value.country} , منطقة : ${this.address.value.area} , الجاده :  ${this.address.value.gadah}, شارع : ${this.address.value.street} , منزل :  ${this.address.value.home} %0A رقم الهاتف : ${this.address.value.phone}`
+      else
+      this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي المنتج : %0A اسم المنتج :  ${this.whatsappDataLink[0].productsTitle} %0A الكمية المطلوبة : ${this.whatsappDataLink[0].productquantity} %0A   السعر الكلي شامل خدمة التوصيل  : ${this.totalCost} د.ك د.ك %0A  العنوان : %0A  دولة : ${this.address.value.country} , منطقة : ${this.address.value.area} , شارع : ${this.address.value.street} , منزل :  ${this.address.value.home} %0A رقم الهاتف : ${this.address.value.phone}`
     }
   }
   // ----------------------- delete from cart -----------------------

@@ -30,7 +30,7 @@ import { VisualsComponent } from './visuals/visuals.component';
     VisitsComponent,
     SafePipe,
     SocialIconsComponent,
-    VisualsComponent
+    VisualsComponent,
   ],
   imports: [
     CommonModule,
