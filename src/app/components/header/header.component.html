@@ -40,7 +40,8 @@
         <!-- display desktop -->
         <li class="nav-item desktop-view">
           <a class="nav-link" aria-current="page" routerLink="" [routerLinkActive]="'active'"
-            [routerLinkActiveOptions]="{exact:true}">الرئيسية</a>
+            [routerLinkActiveOptions]="{exact:true}">الرئيسية
+          </a>
         </li>
         <li class="nav-item desktop-view">
           <a class="nav-link" routerLink="about-us" [routerLinkActive]="'active'">عن الراقي </a>
@@ -65,8 +66,8 @@
         </li>
         <!-- display mobile -->
         <li class="nav-item mobile-view">
-          <a class="nav-link" aria-current="page" routerLink="" [routerLinkActive]="'active'"
-            data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+          <a class="nav-link" aria-current="page" routerLink="" [routerLinkActive]="'active'" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
             [routerLinkActiveOptions]="{exact:true}">الرئيسية</a>
         </li>
         <li class="nav-item mobile-view">
@@ -85,8 +86,8 @@
             aria-label="Toggle navigation">صوتيات </a>
         </li>
         <li class="nav-item mobile-view">
-          <a class="nav-link " routerLink="visuals" [routerLinkActive]="'active'" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+          <a class="nav-link " routerLink="visuals" [routerLinkActive]="'active'" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
             aria-label="Toggle navigation">مرئيات </a>
         </li>
         <li class="nav-item mobile-view">
@@ -106,8 +107,10 @@
         </li>
       </ul>
     </div>
-    <h5 type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarDark"  routerLink="products"
+    <h5 type="button" class="position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarDark" routerLink="products"
       aria-controls="offcanvasNavbarDark" aria-label="Toggle navigation"> <i
-        class="bi bi-bag-heart-fill text-light"></i></h5>
+        class="bi bi-bag-heart-fill text-light"></i>
+      <div class="div-cart-num"><small class="cart-num">{{cartCount|async}}</small></div>
+    </h5>
   </div>
 </nav>

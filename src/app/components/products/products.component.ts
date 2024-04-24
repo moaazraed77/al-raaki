@@ -5,6 +5,8 @@ import { social } from 'src/app/Modal/interfaces/social.interface';
 import { ProductsService } from 'src/app/services/products.service';
 import { SocialMediaService } from 'src/app/services/social-media.service';
 import * as AOS from 'aos';
+import { Store } from '@ngrx/store';
+import { addToCart, removeFromCart } from 'src/app/store/cart.actions';
 
 @Component({
   selector: 'app-products',
@@ -23,7 +25,7 @@ export class ProductsComponent implements OnDestroy {
 
   subscription: Subscription[] = []
 
-  constructor(private productServ: ProductsService, private iconsServ: SocialMediaService) {
+  constructor(private productServ: ProductsService, private iconsServ: SocialMediaService , private store :Store) {
     // if (sessionStorage.getItem("page-attitude") != "products-page-working-fine") {
     //   sessionStorage.setItem("page-attitude", "products-page-working-fine")
     //   window.location.reload()
@@ -37,15 +39,12 @@ export class ProductsComponent implements OnDestroy {
       error: () => { },
       complete: () => { }
     }))
-
     this.totalCost = 0;
     this.cart = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
     for (let item of this.cart) {
       this.totalCost += item.productDiscount;
     }
-
     AOS.init();
-
   }
 
   // ----------------------- add to cart -----------------------
@@ -56,6 +55,7 @@ export class ProductsComponent implements OnDestroy {
     if (!this.cart.find(ele => ele.id === item.id)) {
       this.totalCost = 0;
       this.cart.push(item);
+      this.store.dispatch(addToCart())  // here we send the event on the action  using ==> this.store.dispatch()
       localStorage.setItem("products-cart", JSON.stringify(this.cart))
       for (let item of this.cart) {
         this.totalCost += item.productDiscount;
@@ -68,6 +68,7 @@ export class ProductsComponent implements OnDestroy {
     this.totalCost = 0;
     this.cart = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
     this.cart.splice(itemIndex, 1);
+    this.store.dispatch(removeFromCart())  // here we send the event on the action  using ==> this.store.dispatch()
     localStorage.setItem("products-cart", JSON.stringify(this.cart));
     for (let item of this.cart) {
       this.totalCost += item.productDiscount;

@@ -110,6 +110,24 @@ span {
     font-size: 20px;
 }
 
+.div-cart-num{
+    position: absolute;
+    top: -6px;
+    right: -5px;
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    background: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cart-num{
+    color: white;
+    font-size: 12px;
+    text-align: center;
+}
+
 @media screen and (max-width:600px) {
     .logo {
         height: 130px;

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { product } from 'src/app/Modal/interfaces/product.interface';
 import { social } from 'src/app/Modal/interfaces/social.interface';
@@ -30,7 +31,10 @@ export class HeaderComponent {
 
   totalCost: number = 0;
 
-  constructor(private iconsServ: SocialMediaService) {
+  // here we will ==> call the select function to select the reducer 
+  cartCount = this.store.select("myCart")
+  // then we put the reducer in the store module
+  constructor(private iconsServ: SocialMediaService , private store:Store<{myCart:number}>) {
 
     // ----------------------- get whatsapp -----------------------
     iconsServ.getSocialAPI("whats").subscribe(data => {

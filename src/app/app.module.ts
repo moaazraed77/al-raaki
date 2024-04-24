@@ -28,6 +28,8 @@ import { EditProductLinkPipe } from './Modal/pipes/edit-product-link.pipe';
 import { PaymentComponent } from './components/payment/payment.component';
 import { VisualsComponent } from './components/visuals/visuals.component'; // write this special code for upload img 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { cartReducer } from './store/cart.reducer';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ToastrModule.forRoot({
       positionClass: "toast-top-left"
     }), // ToastrModule added
-    HttpClientModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideDatabase(() => getDatabase()), provideStorage(() => getStorage())
+    HttpClientModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideDatabase(() => getDatabase()), provideStorage(() => getStorage()),
+    // StoreModule.forRoot({}, {})  // note that we can use multiple reducses
+    StoreModule.forRoot({myCart:cartReducer})  
   ],
   providers: [
     // write this special code for upload img 
