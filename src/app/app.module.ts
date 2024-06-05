@@ -16,7 +16,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AdminModule } from './admin/admin.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
@@ -30,6 +30,8 @@ import { VisualsComponent } from './components/visuals/visuals.component'; // wr
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { cartReducer } from './store/cart.reducer';
+import { TestUpaymentComponent } from './components/test-upayment/test-upayment.component';
+import { AuthGatewayInterceptor } from './Modal/auth-gateway.interceptor';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { cartReducer } from './store/cart.reducer';
     EditProductLinkPipe,
     PaymentComponent,
     VisualsComponent,
+    TestUpaymentComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,8 @@ import { cartReducer } from './store/cart.reducer';
   providers: [
     // write this special code for upload img 
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {provide: HTTP_INTERCEPTORS,useClass:AuthGatewayInterceptor, multi:true}
   ],
   bootstrap: [AppComponent]
 })

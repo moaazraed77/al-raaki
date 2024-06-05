@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { product } from '../Modal/interfaces/product.interface';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -47,4 +47,6 @@ export class ProductsService {
       complete: () => { }
     })
   }
+
+
 }

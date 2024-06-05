@@ -1,3 +1,4 @@
+import { TestUpaymentComponent } from './components/test-upayment/test-upayment.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:"sounds",component:SoundsComponent},
   {path:"visuals",component:VisualsComponent},
   {path:"visits",component:VisitsComponent},
+  {path:"test",component:TestUpaymentComponent},
 ];
 
 @NgModule({

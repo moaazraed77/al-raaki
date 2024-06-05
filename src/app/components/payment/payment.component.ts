@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { product } from 'src/app/Modal/interfaces/product.interface';
 import { social } from 'src/app/Modal/interfaces/social.interface';
 import { SocialMediaService } from 'src/app/services/social-media.service';
+import { UpaymentService } from 'src/app/services/upayment.service';
 
 @Component({
   selector: 'app-payment',
@@ -36,7 +37,7 @@ export class PaymentComponent {
   })
 
 
-  constructor(private formbuilder: FormBuilder, private iconsServ: SocialMediaService, private toastr: ToastrService) {
+  constructor(private formbuilder: FormBuilder, private iconsServ: SocialMediaService, private toastr: ToastrService, private paymentServ: UpaymentService) {
     this.cart = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
     for (let item of this.cart) {
       this.totalCost += item.productDiscount * item.productquantity!;
@@ -103,5 +104,12 @@ export class PaymentComponent {
     }
     if (this.totalCost != 0)
       this.totalCost += 3;
+  }
+
+  buy(){
+    this.paymentServ.createPayment(this.totalCost).subscribe(result=>{
+      console.log(result)
+      window.open(result.data.link)
+    })
   }
 }

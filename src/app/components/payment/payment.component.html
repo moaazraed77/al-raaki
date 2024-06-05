@@ -13,8 +13,7 @@
                     <span><i class="bi bi-plus-circle-dotted" (click)="calc(item.productDiscount,i,1)"></i></span>
                 </p>
                 <div class="text-center offcanvas-btns">
-                    <button class="btn btn-light btn-delete" (click)="delete(i)"><i
-                            class="bi bi-trash3-fill"></i></button>
+                    <button class="btn btn-light btn-delete" (click)="delete(i)"><i class="bi bi-trash3-fill"></i></button>
                 </div>
             </div>
         </div>
@@ -63,16 +62,16 @@
         </div>
 
         <div class="col-12 btn btn-dark m-1" *ngIf="fakeWhatsappButton" (click)="errorMsg()">شراء ( {{totalCost}} د.ك )</div>
-
         <div class="col-12 alert alert-danger" *ngIf="showAlertMsg && fakeWhatsappButton">خطاء , يرجي اكمال بياناتك</div>
-        
+       
         <ng-container *ngIf="!fakeWhatsappButton">
-            <a class="col-12" href="https://wa.me/{{item.social}}?text={{whatsappDataLinkMsg}}"
+            <!-- <a class="col-12" href="https://wa.me/{{item.social}}?text={{whatsappDataLinkMsg}}"
                 *ngFor="let item of whatsapp" target="_blank">
                 <div class="btn btn-dark text-center mt-1" style="width: 100%;" type="button"
                     (click)="whatsappDataLinkFun()">شراء ( {{totalCost}} د.ك )
                 </div>
-            </a>
+            </a> -->
+            <a class="col-12 btn btn-dark" (click)="buy()">شراء ( {{totalCost}} د.ك )     </a>
         </ng-container>
         
         <hr class="col-12">
