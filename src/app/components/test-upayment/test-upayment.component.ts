@@ -57,10 +57,10 @@ export class TestUpaymentComponent  {
 constructor(private asd:UpaymentService){}
 
   buy(){
-    this.asd.createPayment("as").subscribe(data=>{
-      console.log(data);
-      console.log(data.data.link);
-      window.open(data.data.link,"blank")
-    })
+    // this.asd.createPayment("as").subscribe(data=>{
+    //   console.log(data);
+    //   console.log(data.data.link);
+    //   window.open(data.data.link,"blank")
+    // })
   }
 }

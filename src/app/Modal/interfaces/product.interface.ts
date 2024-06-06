@@ -8,3 +8,10 @@ export interface product {
     productquantity?: number,
     productDateChoosed?: string,
 }
+
+export interface productForPayment {
+    "name": string,
+    "description": string,
+    "price": number,
+    "quantity": number
+}

@@ -32,6 +32,7 @@ import { StoreModule } from '@ngrx/store';
 import { cartReducer } from './store/cart.reducer';
 import { TestUpaymentComponent } from './components/test-upayment/test-upayment.component';
 import { AuthGatewayInterceptor } from './Modal/auth-gateway.interceptor';
+import { GatewayInterceptor } from './services/interceptors/gateway.interceptor';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { AuthGatewayInterceptor } from './Modal/auth-gateway.interceptor';
     // write this special code for upload img 
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    {provide: HTTP_INTERCEPTORS,useClass:AuthGatewayInterceptor, multi:true}
+    // {provide: HTTP_INTERCEPTORS,useClass:AuthGatewayInterceptor, multi:true}
+    {provide: HTTP_INTERCEPTORS,useClass:GatewayInterceptor, multi:true},
   ],
   bootstrap: [AppComponent]
 })

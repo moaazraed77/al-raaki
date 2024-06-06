@@ -22,28 +22,25 @@
             <form [formGroup]="address">
                 <div class="inputs-div pt-2">
                     <div class="form-group m-2 mb-3">
-                        <input type="text" class="form-control" formControlName="phone" (keyup)="viewRealWatsApp()"
-                            placeholder="رقم الهاتف  ">
+                        <input type="text" class="form-control" formControlName="name" placeholder="الاسم كامل  ">
                     </div>
                     <div class="form-group m-2 mb-3">
-                        <input type="text" class="form-control" formControlName="country" (keyup)="viewRealWatsApp()"
-                            placeholder="الدولة ">
+                        <input type="text" class="form-control" formControlName="phone" (keyup)="viewRealWatsApp()"  placeholder="رقم الهاتف  ">
                     </div>
                     <div class="form-group m-2 mb-3">
-                        <input type="text" class="form-control" formControlName="area" (keyup)="viewRealWatsApp()"
-                            placeholder="المنطقة ">
+                        <input type="text" class="form-control" formControlName="country" (keyup)="viewRealWatsApp()"  placeholder="الدولة ">
                     </div>
                     <div class="form-group m-2 mb-3">
-                        <input type="text" class="form-control" formControlName="gadah" (keyup)="viewRealWatsApp()"
-                            placeholder="الجاده">
+                        <input type="text" class="form-control" formControlName="area" (keyup)="viewRealWatsApp()"  placeholder="المنطقة ">
                     </div>
                     <div class="form-group m-2 mb-3">
-                        <input type="text" class="form-control" formControlName="street" (keyup)="viewRealWatsApp()"
-                            placeholder="الشارع ">
+                        <input type="text" class="form-control" formControlName="gadah" (keyup)="viewRealWatsApp()"  placeholder="الجاده">
                     </div>
                     <div class="form-group m-2 mb-3">
-                        <input type="text" class="form-control" formControlName="home" (keyup)="viewRealWatsApp()"
-                            placeholder="المنزل ">
+                        <input type="text" class="form-control" formControlName="street" (keyup)="viewRealWatsApp()"  placeholder="الشارع ">
+                    </div>
+                    <div class="form-group m-2 mb-3">
+                        <input type="text" class="form-control" formControlName="home" (keyup)="viewRealWatsApp()"  placeholder="المنزل ">
                     </div>
                     <!-- <div class="form-group m-2 mb-3">
                         <input type="text" class="form-control" placeholder="الحي ">
@@ -71,7 +68,7 @@
                     (click)="whatsappDataLinkFun()">شراء ( {{totalCost}} د.ك )
                 </div>
             </a> -->
-            <a class="col-12 btn btn-dark" (click)="buy()">شراء ( {{totalCost}} د.ك )     </a>
+            <a class="col-12 btn btn-dark" (click)="payment()">شراء ( {{totalCost}} د.ك )     </a>
         </ng-container>
         
         <hr class="col-12">

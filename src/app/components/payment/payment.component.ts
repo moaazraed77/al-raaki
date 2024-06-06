@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { product } from 'src/app/Modal/interfaces/product.interface';
+import { product, productForPayment } from 'src/app/Modal/interfaces/product.interface';
 import { social } from 'src/app/Modal/interfaces/social.interface';
 import { SocialMediaService } from 'src/app/services/social-media.service';
 import { UpaymentService } from 'src/app/services/upayment.service';
@@ -14,6 +14,8 @@ import { UpaymentService } from 'src/app/services/upayment.service';
 export class PaymentComponent {
 
   cart: product[] = [];
+
+  cartDataForPayment:any[]=[]
 
   totalCost: number = 0;
 
@@ -28,6 +30,7 @@ export class PaymentComponent {
   showAlertMsg:boolean=false;
 
   address = this.formbuilder.group({
+    name: ["", Validators.required],
     phone: ["", Validators.required],
     country: ["", Validators.required],
     area: ["", Validators.required],
@@ -45,11 +48,11 @@ export class PaymentComponent {
     this.totalCost += 3;
 
     // ----------------------- get whatsapp -----------------------
-    iconsServ.getSocialAPI("whats").subscribe(data => {
-      for (const key in data) {
-        this.whatsapp.push(data[key])
-      }
-    })
+    // iconsServ.getSocialAPI("whats").subscribe(data => {
+    //   for (const key in data) {
+    //     this.whatsapp.push(data[key])
+    //   }
+    // })
   }
 
   calc(price: number, i: number, value: number) {
@@ -75,24 +78,24 @@ export class PaymentComponent {
     this.showAlertMsg=true
   }
 
-  whatsappDataLinkFun() {
-    let msg = ""
-    this.whatsappDataLink = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
-    if (this.whatsappDataLink.length > 1) {
-      for (const temp of this.whatsappDataLink) {
-        msg += `%0A اسم المنتج : ${temp.productsTitle} %0A الكمية المطلوبة : ${temp.productquantity} %0A `;
-      }
-      if(this.address.value.gadah)
-      this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي هذه المنتجات : %0A ${msg} %0A  السعر الكلي شامل خدمة التوصيل  : ${this.totalCost} د.ك %0A  العنوان : %0A  دولة : ${this.address.value.country} , منطقة : ${this.address.value.area} , الجاده :  ${this.address.value.gadah} , شارع : ${this.address.value.street} , منزل :  ${this.address.value.home} %0A رقم الهاتف : ${this.address.value.phone}`
-      else
-      this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي هذه المنتجات : %0A ${msg} %0A  السعر الكلي شامل خدمة التوصيل  : ${this.totalCost} د.ك %0A  العنوان : %0A  دولة : ${this.address.value.country} , منطقة : ${this.address.value.area} , شارع : ${this.address.value.street} , منزل :  ${this.address.value.home} %0A رقم الهاتف : ${this.address.value.phone}`
-    } else if (this.whatsappDataLink.length == 1) {
-      if(this.address.value.gadah)
-      this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي المنتج : %0A اسم المنتج :  ${this.whatsappDataLink[0].productsTitle} %0A الكمية المطلوبة : ${this.whatsappDataLink[0].productquantity} %0A   السعر الكلي شامل خدمة التوصيل  : ${this.totalCost} د.ك د.ك %0A  العنوان : %0A  دولة : ${this.address.value.country} , منطقة : ${this.address.value.area} , الجاده :  ${this.address.value.gadah}, شارع : ${this.address.value.street} , منزل :  ${this.address.value.home} %0A رقم الهاتف : ${this.address.value.phone}`
-      else
-      this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي المنتج : %0A اسم المنتج :  ${this.whatsappDataLink[0].productsTitle} %0A الكمية المطلوبة : ${this.whatsappDataLink[0].productquantity} %0A   السعر الكلي شامل خدمة التوصيل  : ${this.totalCost} د.ك د.ك %0A  العنوان : %0A  دولة : ${this.address.value.country} , منطقة : ${this.address.value.area} , شارع : ${this.address.value.street} , منزل :  ${this.address.value.home} %0A رقم الهاتف : ${this.address.value.phone}`
-    }
-  }
+  // whatsappDataLinkFun() {
+  //   let msg = ""
+  //   this.whatsappDataLink = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
+  //   if (this.whatsappDataLink.length > 1) {
+  //     for (const temp of this.whatsappDataLink) {
+  //       msg += `%0A اسم المنتج : ${temp.productsTitle} %0A الكمية المطلوبة : ${temp.productquantity} %0A `;
+  //     }
+  //     if(this.address.value.gadah)
+  //     this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي هذه المنتجات : %0A ${msg} %0A  السعر الكلي شامل خدمة التوصيل  : ${this.totalCost} د.ك %0A  العنوان : %0A  دولة : ${this.address.value.country} , منطقة : ${this.address.value.area} , الجاده :  ${this.address.value.gadah} , شارع : ${this.address.value.street} , منزل :  ${this.address.value.home} %0A رقم الهاتف : ${this.address.value.phone}`
+  //     else
+  //     this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي هذه المنتجات : %0A ${msg} %0A  السعر الكلي شامل خدمة التوصيل  : ${this.totalCost} د.ك %0A  العنوان : %0A  دولة : ${this.address.value.country} , منطقة : ${this.address.value.area} , شارع : ${this.address.value.street} , منزل :  ${this.address.value.home} %0A رقم الهاتف : ${this.address.value.phone}`
+  //   } else if (this.whatsappDataLink.length == 1) {
+  //     if(this.address.value.gadah)
+  //     this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي المنتج : %0A اسم المنتج :  ${this.whatsappDataLink[0].productsTitle} %0A الكمية المطلوبة : ${this.whatsappDataLink[0].productquantity} %0A   السعر الكلي شامل خدمة التوصيل  : ${this.totalCost} د.ك د.ك %0A  العنوان : %0A  دولة : ${this.address.value.country} , منطقة : ${this.address.value.area} , الجاده :  ${this.address.value.gadah}, شارع : ${this.address.value.street} , منزل :  ${this.address.value.home} %0A رقم الهاتف : ${this.address.value.phone}`
+  //     else
+  //     this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي المنتج : %0A اسم المنتج :  ${this.whatsappDataLink[0].productsTitle} %0A الكمية المطلوبة : ${this.whatsappDataLink[0].productquantity} %0A   السعر الكلي شامل خدمة التوصيل  : ${this.totalCost} د.ك د.ك %0A  العنوان : %0A  دولة : ${this.address.value.country} , منطقة : ${this.address.value.area} , شارع : ${this.address.value.street} , منزل :  ${this.address.value.home} %0A رقم الهاتف : ${this.address.value.phone}`
+  //   }
+  // }
   // ----------------------- delete from cart -----------------------
   delete(itemIndex: number) {
     this.totalCost = 0;
@@ -106,8 +109,29 @@ export class PaymentComponent {
       this.totalCost += 3;
   }
 
-  buy(){
-    this.paymentServ.createPayment(this.totalCost).subscribe(result=>{
+  payment(){
+    let msg = "",products:productForPayment[]=[];
+    this.whatsappDataLink = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
+    if (this.whatsappDataLink.length > 1) {
+      for (const temp of this.whatsappDataLink) {
+        msg += `
+\nاسم المنتج : ${temp.productsTitle} 
+\nالكمية المطلوبة : ${temp.productquantity} 
+\n`;
+      }
+      this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي هذه المنتجات\n${msg}\nالسعر الكلي شامل خدمة التوصيل: ${this.totalCost} د.ك\nالعنوان \nدولة : ${this.address.value.country}\nمنطقة : ${this.address.value.area}\nالجاده :  ${this.address.value.gadah}\nشارع : ${this.address.value.street}\nمنزل :  ${this.address.value.home}\nرقم الهاتف : ${this.address.value.phone}`
+    }
+    
+    for (const item of this.whatsappDataLink) {
+      products.push({
+        "name": item.productsTitle,
+        "description": item.productsDetails,
+        "price": item.productPrice,
+        "quantity": item.productquantity!
+    })
+    }
+
+    this.paymentServ.createPayment(this.totalCost , products , this.whatsappDataLinkMsg,this.address.value.name!,this.address.value.phone!).subscribe(result=>{
       console.log(result)
       window.open(result.data.link)
     })
