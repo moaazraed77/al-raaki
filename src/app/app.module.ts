@@ -30,7 +30,6 @@ import { VisualsComponent } from './components/visuals/visuals.component'; // wr
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { cartReducer } from './store/cart.reducer';
-import { TestUpaymentComponent } from './components/test-upayment/test-upayment.component';
 import { AuthGatewayInterceptor } from './Modal/auth-gateway.interceptor';
 import { GatewayInterceptor } from './services/interceptors/gateway.interceptor';
 
@@ -50,7 +49,6 @@ import { GatewayInterceptor } from './services/interceptors/gateway.interceptor'
     EditProductLinkPipe,
     PaymentComponent,
     VisualsComponent,
-    TestUpaymentComponent,
   ],
   imports: [
     BrowserModule,
