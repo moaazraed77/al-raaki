@@ -83,6 +83,12 @@ a{
     padding: 0.5em 1em;
     text-align: center;
 }
+
+.btn.btn-dark:hover{
+    background-color: rgb(4, 141, 191) !important;
+
+}
+
 @media screen and (max-width:600px) {
     .cart-div {
         margin-left: 0%;

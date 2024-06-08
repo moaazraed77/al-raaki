@@ -74,10 +74,6 @@ export class PaymentComponent {
       this.fakeWhatsappButton = true
   }
 
-  errorMsg(){
-    this.showAlertMsg=true
-  }
-
   // whatsappDataLinkFun() {
   //   let msg = ""
   //   this.whatsappDataLink = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
@@ -132,7 +128,6 @@ export class PaymentComponent {
     }
 
     this.paymentServ.createPayment(this.totalCost , products , this.whatsappDataLinkMsg,this.address.value.name!,this.address.value.phone!).subscribe(result=>{
-      console.log(result)
       window.open(result.data.link)
     })
   }

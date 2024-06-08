@@ -22,7 +22,7 @@
             <form [formGroup]="address">
                 <div class="inputs-div pt-2">
                     <div class="form-group m-2 mb-3">
-                        <input type="text" class="form-control" formControlName="name" placeholder="الاسم كامل  ">
+                        <input type="text" class="form-control" formControlName="name" placeholder="الاسم كامل  " (keyup)="viewRealWatsApp()">
                     </div>
                     <div class="form-group m-2 mb-3">
                         <input type="text" class="form-control" formControlName="phone" (keyup)="viewRealWatsApp()"  placeholder="رقم الهاتف  ">
@@ -58,7 +58,7 @@
             <small class="text-danger">* سيتم اضافة 3 دينار رسوم توصيل *</small>
         </div>
 
-        <div class="col-12 btn btn-dark m-1" *ngIf="fakeWhatsappButton" (click)="errorMsg()">شراء ( {{totalCost}} د.ك )</div>
+        <div class="col-12 btn btn-dark m-1" *ngIf="fakeWhatsappButton" (click)="showAlertMsg=true">شراء ( {{totalCost}} د.ك )</div>
         <div class="col-12 alert alert-danger" *ngIf="showAlertMsg && fakeWhatsappButton">خطاء , يرجي اكمال بياناتك</div>
        
         <ng-container *ngIf="!fakeWhatsappButton">
