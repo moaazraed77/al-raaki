@@ -1,0 +1,18 @@
+<div class="col-12 d-flex justify-content-start flex-wrap">
+    <div class="col-sm-4 p-1" *ngFor="let item of orders">
+        <div class="card p-1">
+            <p>"id" : {{item.id}}</p>
+            <div *ngFor="let temp of item.products">
+                <p>"name" : {{temp.name}}</p>
+                <p>"description" : {{temp.description}}</p>
+                <p>"price" : {{temp.price}}</p>
+                <p>"quantity" : {{temp.quantity}}</p>
+                <hr>
+            </div>
+            <p> "total" : {{item.total}}</p>
+            <div class="text-center">
+                <button class="btn btn-danger" (click)="del(item)">delete</button>
+            </div>
+        </div>
+    </div>
+</div>

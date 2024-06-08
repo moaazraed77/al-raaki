@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { order } from 'src/app/Modal/interfaces/order.interface';
 import { product, productForPayment } from 'src/app/Modal/interfaces/product.interface';
 import { social } from 'src/app/Modal/interfaces/social.interface';
+import { SiteOrdersService } from 'src/app/services/site-orders.service';
 import { SocialMediaService } from 'src/app/services/social-media.service';
 import { UpaymentService } from 'src/app/services/upayment.service';
 
@@ -15,7 +17,7 @@ export class PaymentComponent {
 
   cart: product[] = [];
 
-  cartDataForPayment:any[]=[]
+  cartDataForPayment: any[] = []
 
   totalCost: number = 0;
 
@@ -26,8 +28,8 @@ export class PaymentComponent {
   whatsapp: social[] = [];
 
   fakeWhatsappButton: boolean = true;
-  
-  showAlertMsg:boolean=false;
+
+  showAlertMsg: boolean = false;
 
   address = this.formbuilder.group({
     name: ["", Validators.required],
@@ -40,7 +42,8 @@ export class PaymentComponent {
   })
 
 
-  constructor(private formbuilder: FormBuilder, private iconsServ: SocialMediaService, private toastr: ToastrService, private paymentServ: UpaymentService) {
+  constructor(private formbuilder: FormBuilder, private iconsServ: SocialMediaService, private toastr: ToastrService,
+     private paymentServ: UpaymentService , private ordersServ:SiteOrdersService) {
     this.cart = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
     for (let item of this.cart) {
       this.totalCost += item.productDiscount * item.productquantity!;
@@ -105,8 +108,10 @@ export class PaymentComponent {
       this.totalCost += 3;
   }
 
-  payment(){
-    let msg = "",products:productForPayment[]=[];
+  payment() {
+
+    let msg = "",  products: productForPayment[] = [] , order:order={} as order;
+
     this.whatsappDataLink = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
     if (this.whatsappDataLink.length > 1) {
       for (const temp of this.whatsappDataLink) {
@@ -117,17 +122,22 @@ export class PaymentComponent {
       }
       this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي هذه المنتجات\n${msg}\nالسعر الكلي شامل خدمة التوصيل: ${this.totalCost} د.ك\nالعنوان \nدولة : ${this.address.value.country}\nمنطقة : ${this.address.value.area}\nالجاده :  ${this.address.value.gadah}\nشارع : ${this.address.value.street}\nمنزل :  ${this.address.value.home}\nرقم الهاتف : ${this.address.value.phone}`
     }
-    
+
     for (const item of this.whatsappDataLink) {
       products.push({
         "name": item.productsTitle,
         "description": item.productsDetails,
         "price": item.productPrice,
         "quantity": item.productquantity!
-    })
+      })
     }
 
-    this.paymentServ.createPayment(this.totalCost , products , this.whatsappDataLinkMsg,this.address.value.name!,this.address.value.phone!).subscribe(result=>{
+    this.paymentServ.createPayment(this.totalCost, order, this.whatsappDataLinkMsg, this.address.value.name!, this.address.value.phone!).subscribe(result => {
+      // window.open(result.data.link)
+      order.products=products;
+      order.total=this.totalCost;
+      order.id=new Date().getTime()
+      this.ordersServ.postSiteOrder(order)
       window.open(result.data.link,"_self")
     })
   }

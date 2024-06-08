@@ -12,6 +12,7 @@ import { VisitsComponent } from './visits/visits.component';
 import { SocialIconsComponent } from './social-icons/social-icons.component';
 import { VisualsComponent } from './visuals/visuals.component';
 import { adminAuthGuard } from '../services/admin-auth.guard';
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   { path: "admin-login-dash", component: LoginDashComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: "fatawy-dash", component: FatawyComponent },
       { path: "home-dash", component: HomeComponent },
       { path: "products-dash", component: ProductsComponent },
+      { path: "orders", component: OrdersComponent },
       { path: "sounds-dash", component: SoundsComponent },
       { path: "visuals-dash", component: VisualsComponent },
       { path: "visits-dash", component: VisitsComponent },

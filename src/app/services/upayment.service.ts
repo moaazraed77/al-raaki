@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { product, productForPayment } from '../Modal/interfaces/product.interface';
+import { order } from '../Modal/interfaces/order.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +14,15 @@ export class UpaymentService {
   // ---------------------------  payment gateway ---------------------------
 
   private apiUrl = 'https://uapi.upayments.com/api/v1/charge'; // Replace with the actual UPayments API URL
-  createPayment(cost: number , products:productForPayment[],customerExtraData:string,name:string,phone:string): Observable<any> {
+  createPayment(cost: number , order:order,customerExtraData:string,name:string,phone:string): Observable<any> {
 
     const body = {
-      "products": products,
+      "products": order.products,
       // order details ؟
       "order": {
         "id": "202210101255255144669", 
         // "reference": "11111991",  
-        "description": "Purchase order received from Alroqa-8", 
+        "description": `Purchase order received from Alroqa-8 with ${order.id}`, 
         "currency": "KWD", 
         "amount": cost 
       },

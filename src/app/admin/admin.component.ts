@@ -12,13 +12,15 @@ export class AdminComponent implements OnInit {
   showChart: boolean = true
 
   constructor(private route: Router) {
-    route.events.subscribe(val =>{
-      if (val instanceof NavigationEnd){
-        if(val.url.endsWith("admin"))
-          this.showChart=true
+    route.events.subscribe(val => {
+      if (val instanceof NavigationEnd) {
+        if (val.url.endsWith("admin"))
+          this.showChart = true
+        else
+          this.showChart = false
       }
     })
-   }
+  }
 
   ngOnInit(): void {
 
