@@ -58,7 +58,7 @@
             <small class="text-danger">* سيتم اضافة 3 دينار رسوم توصيل *</small>
         </div>
 
-        <div class="col-12 btn btn-dark m-1" *ngIf="fakeWhatsappButton" (click)="showAlertMsg=true">شراء ( {{totalCost}} د.ك )</div>
+        <div class="col-12 btn btn-dark m-1" *ngIf="fakeWhatsappButton" (click)="showAlertMsg=true">ادفع الان ( {{totalCost}} د.ك )</div>
         <div class="col-12 alert alert-danger" *ngIf="showAlertMsg && fakeWhatsappButton">خطاء , يرجي اكمال بياناتك</div>
        
         <ng-container *ngIf="!fakeWhatsappButton">
