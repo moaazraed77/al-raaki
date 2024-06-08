@@ -128,7 +128,7 @@ export class PaymentComponent {
     }
 
     this.paymentServ.createPayment(this.totalCost , products , this.whatsappDataLinkMsg,this.address.value.name!,this.address.value.phone!).subscribe(result=>{
-      window.open(result.data.link)
+      window.open(result.data.link,"_self")
     })
   }
 }
