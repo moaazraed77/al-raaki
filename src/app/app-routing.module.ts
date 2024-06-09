@@ -18,6 +18,7 @@ const routes: Routes = [
   {path:"about-us",component:AboutUsComponent},
   {path:"fatawy",component:FatawyComponent},
   {path:"payment",component:PaymentComponent},
+  {path:"payment-confirm",component:PaymentConfiremComponent},
   {path:"payment-confirm/:id",component:PaymentConfiremComponent},
   {path:"products",component:ProductsComponent},
   {path:"sounds",component:SoundsComponent},
