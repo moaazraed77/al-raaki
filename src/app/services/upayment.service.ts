@@ -37,8 +37,8 @@ export class UpaymentService {
         // "email": "kakde.dharmendra@upayments.com",
         "mobile": phone
       },
-      "returnUrl": "https://upayments.com/en/",
-      "cancelUrl": "https://error.com",
+      "returnUrl": "https://alroqya-q8.com/#/products",
+      "cancelUrl": "http://alroqya-q8.com/#/payment-confirm/",
       "notificationUrl": "https://webhook.site/d7c6e1c8-b98b-4f77-8b51-b487540df336",
       "customerExtraData": customerExtraData
     }

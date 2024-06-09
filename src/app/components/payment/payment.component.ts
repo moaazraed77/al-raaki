@@ -36,6 +36,7 @@ export class PaymentComponent {
     phone: ["", Validators.required],
     country: ["", Validators.required],
     area: ["", Validators.required],
+    peice: ["", Validators.required],
     gadah: [""],
     street: ["", Validators.required],
     home: ["", Validators.required],
@@ -43,7 +44,7 @@ export class PaymentComponent {
 
 
   constructor(private formbuilder: FormBuilder, private iconsServ: SocialMediaService, private toastr: ToastrService,
-     private paymentServ: UpaymentService , private ordersServ:SiteOrdersService) {
+    private paymentServ: UpaymentService, private ordersServ: SiteOrdersService) {
     this.cart = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
     for (let item of this.cart) {
       this.totalCost += item.productDiscount * item.productquantity!;
@@ -110,7 +111,7 @@ export class PaymentComponent {
 
   payment() {
 
-    let msg = "",  products: productForPayment[] = [] , order:order={} as order;
+    let msg = "", products: productForPayment[] = [], order: order = {} as order;
 
     this.whatsappDataLink = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
     if (this.whatsappDataLink.length > 1) {
@@ -120,7 +121,7 @@ export class PaymentComponent {
 \nالكمية المطلوبة : ${temp.productquantity} 
 \n`;
       }
-      this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي هذه المنتجات\n${msg}\nالسعر الكلي شامل خدمة التوصيل: ${this.totalCost} د.ك\nالعنوان \nدولة : ${this.address.value.country}\nمنطقة : ${this.address.value.area}\nالجاده :  ${this.address.value.gadah}\nشارع : ${this.address.value.street}\nمنزل :  ${this.address.value.home}\nرقم الهاتف : ${this.address.value.phone}`
+      this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي هذه المنتجات\n${msg}\nالسعر الكلي شامل خدمة التوصيل: ${this.totalCost} د.ك\nالعنوان \nدولة : ${this.address.value.country}\nمنطقة : ${this.address.value.area}\nالقطعة : ${this.address.value.peice}\nالجاده :  ${this.address.value.gadah}\nشارع : ${this.address.value.street}\nمنزل :  ${this.address.value.home}\nرقم الهاتف : ${this.address.value.phone}`
     }
 
     for (const item of this.whatsappDataLink) {
@@ -134,11 +135,21 @@ export class PaymentComponent {
 
     this.paymentServ.createPayment(this.totalCost, order, this.whatsappDataLinkMsg, this.address.value.name!, this.address.value.phone!).subscribe(result => {
       // window.open(result.data.link)
-      order.products=products;
-      order.total=this.totalCost;
-      order.id=new Date().getTime()
+      order.products = products;
+      order.total = this.totalCost;
+      order.id = new Date().getTime()
       this.ordersServ.postSiteOrder(order)
-      window.open(result.data.link,"_self")
+      window.open(result.data.link, "_self")
+      this.address.patchValue({
+        name: "",
+        phone: "",
+        country: "",
+        area: "",
+        peice: "",
+        gadah: "",
+        street: "",
+        home: "",
+      })
     })
   }
 }

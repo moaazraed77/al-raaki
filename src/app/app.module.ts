@@ -32,6 +32,7 @@ import { StoreModule } from '@ngrx/store';
 import { cartReducer } from './store/cart.reducer';
 import { AuthGatewayInterceptor } from './Modal/auth-gateway.interceptor';
 import { GatewayInterceptor } from './services/interceptors/gateway.interceptor';
+import { PaymentConfiremComponent } from './components/payment-confirem/payment-confirem.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { GatewayInterceptor } from './services/interceptors/gateway.interceptor'
     EditProductLinkPipe,
     PaymentComponent,
     VisualsComponent,
+    PaymentConfiremComponent,
   ],
   imports: [
     BrowserModule,

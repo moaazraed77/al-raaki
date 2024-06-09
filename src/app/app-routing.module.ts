@@ -10,6 +10,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { VisualsService } from './services/visuals.service';
 import { VisualsComponent } from './components/visuals/visuals.component';
+import { PaymentConfiremComponent } from './components/payment-confirem/payment-confirem.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:"about-us",component:AboutUsComponent},
   {path:"fatawy",component:FatawyComponent},
   {path:"payment",component:PaymentComponent},
+  {path:"payment-confirm/:id",component:PaymentConfiremComponent},
   {path:"products",component:ProductsComponent},
   {path:"sounds",component:SoundsComponent},
   {path:"visuals",component:VisualsComponent},
