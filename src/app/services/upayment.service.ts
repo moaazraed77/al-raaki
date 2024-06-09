@@ -38,7 +38,7 @@ export class UpaymentService {
         "mobile": phone
       },
       "returnUrl": "https://alroqya-q8.com/#/products",
-      "cancelUrl": "http://alroqya-q8.com/#/payment-confirm/",
+      "cancelUrl": "https://moaazraed77.github.io/al-raaki/#/payment-confirm/",
       "notificationUrl": "https://webhook.site/d7c6e1c8-b98b-4f77-8b51-b487540df336",
       "customerExtraData": customerExtraData
     }
