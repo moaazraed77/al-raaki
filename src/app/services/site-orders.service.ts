@@ -9,23 +9,35 @@ import { Observable } from 'rxjs';
 })
 export class SiteOrdersService {
 
-  url=environment.firebase.databaseURL;
+  url = environment.firebase.databaseURL;
 
-  constructor(private http:HttpClient) { }
+  orders: order[] = [];
 
-  getSiteOrder():Observable<order[]>{
+  constructor(private http: HttpClient) { }
+
+  getSiteOrder(): Observable<order[]> {
     return this.http.get<order[]>(`${this.url}/orders.json`)
   }
 
-  postSiteOrder(data:order){
-    this.http.post(`${this.url}/orders.json`,data).subscribe()
+  postSiteOrder(order: order) {
+    this.getSiteOrder().subscribe({
+      next: (data) => {
+        for (const key in data) {
+          this.orders.push(data[key])
+        }
+      },
+      complete:()=>{
+        if (!this.orders.find(item => item.id == order.id))
+          this.http.post(`${this.url}/orders.json`, order).subscribe()
+      }
+    })
   }
 
-  deleteSiteOrder(order:order){
-    this.getSiteOrder().subscribe(data=>{
+  deleteSiteOrder(order: order) {
+    this.getSiteOrder().subscribe(data => {
       for (const key in data) {
-        if(data[key].id == order.id)
-        this.http.delete(`${this.url}/orders/${key}.json`).subscribe(()=> location.reload())
+        if (data[key].id == order.id)
+          this.http.delete(`${this.url}/orders/${key}.json`).subscribe(() => location.reload())
       }
     })
   }

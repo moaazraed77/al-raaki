@@ -1,0 +1,14 @@
+<div class="col-12 d-flex justify-content-center align-items-center bg-light confirm">
+    <div class="text-center">
+        <div class="alert alert-success">
+            <h3 class="text-capitalize"> dear customer : {{confirmMsg.address.name}}</h3>
+            <h6> the order payment didn't completed </h6>
+            <h6>
+                <div *ngFor="let item of confirem ; let i = index">
+                    <small *ngIf="i <3"><b>{{item[0]}}</b> : {{item[1]}}</small>
+                </div>
+            </h6>
+            <button class="btn btn-success fs-6" routerLink=""> back to home</button>
+        </div>
+    </div>
+</div>

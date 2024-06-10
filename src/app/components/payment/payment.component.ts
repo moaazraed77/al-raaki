@@ -121,8 +121,8 @@ export class PaymentComponent {
 \nالكمية المطلوبة : ${temp.productquantity} 
 \n`;
       }
-      this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي هذه المنتجات\n${msg}\nالسعر الكلي شامل خدمة التوصيل: ${this.totalCost} د.ك\nالعنوان \nدولة : ${this.address.value.country}\nمنطقة : ${this.address.value.area}\nالقطعة : ${this.address.value.peice}\nالجاده :  ${this.address.value.gadah}\nشارع : ${this.address.value.street}\nمنزل :  ${this.address.value.home}\nرقم الهاتف : ${this.address.value.phone}`
     }
+    this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي هذه المنتجات\n${msg}\nالسعر الكلي شامل خدمة التوصيل: ${this.totalCost} د.ك\nالعنوان \nدولة : ${this.address.value.country}\nمنطقة : ${this.address.value.area}\nالقطعة : ${this.address.value.peice}\nالجاده :  ${this.address.value.gadah}\nشارع : ${this.address.value.street}\nمنزل :  ${this.address.value.home}\nرقم الهاتف : ${this.address.value.phone}`
 
     for (const item of this.whatsappDataLink) {
       products.push({
@@ -133,12 +133,15 @@ export class PaymentComponent {
       })
     }
 
-    this.paymentServ.createPayment(this.totalCost, order, this.whatsappDataLinkMsg, this.address.value.name!, this.address.value.phone!).subscribe(result => {
+    sessionStorage.setItem("userPaymentData",JSON.stringify(this.address.value));
+
+    this.paymentServ.createPayment(this.totalCost, products, this.whatsappDataLinkMsg, this.address.value.name!, this.address.value.phone!).subscribe(result => {
       // window.open(result.data.link)
       order.products = products;
       order.total = this.totalCost;
-      order.id = new Date().getTime()
-      this.ordersServ.postSiteOrder(order)
+      order.id = new Date().getTime();
+      order.address = this.address.value.name;
+      sessionStorage.setItem("userPaymentData",JSON.stringify(order));
       window.open(result.data.link, "_self")
       this.address.patchValue({
         name: "",
@@ -152,4 +155,5 @@ export class PaymentComponent {
       })
     })
   }
+  
 }

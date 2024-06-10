@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { product, productForPayment } from '../Modal/interfaces/product.interface';
 import { order } from '../Modal/interfaces/order.interface';
@@ -14,15 +14,14 @@ export class UpaymentService {
   // ---------------------------  payment gateway ---------------------------
 
   private apiUrl = 'https://uapi.upayments.com/api/v1/charge'; // Replace with the actual UPayments API URL
-  createPayment(cost: number , order:order,customerExtraData:string,name:string,phone:string): Observable<any> {
-
+  createPayment(cost: number , products:productForPayment[],customerExtraData:string,name:string,phone:string): Observable<any> {
     const body = {
-      "products": order.products,
+      "products": products,
       // order details ؟
       "order": {
         "id": "202210101255255144669", 
         // "reference": "11111991",  
-        "description": `Purchase order received from Alroqa-8 with ${order.id}`, 
+        "description": `Purchase order received from Alroqa-8`, 
         "currency": "KWD", 
         "amount": cost 
       },
@@ -37,12 +36,13 @@ export class UpaymentService {
         // "email": "kakde.dharmendra@upayments.com",
         "mobile": phone
       },
-      "returnUrl": "https://alroqya-q8.com/#/products",
-      "cancelUrl": "https://moaazraed77.github.io/al-raaki/#/payment-confirm/",
+      "returnUrl": "https://alroqya-q8.com/#/payment-confirm-yes/",
+      "cancelUrl": "https://alroqya-q8.com/#/payment-confirm-no/",
       "notificationUrl": "https://webhook.site/d7c6e1c8-b98b-4f77-8b51-b487540df336",
       "customerExtraData": customerExtraData
     }
 
     return this.http.post(`${this.apiUrl}`, body);
   }
+
 }

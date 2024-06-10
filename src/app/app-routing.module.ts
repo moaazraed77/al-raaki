@@ -1,3 +1,4 @@
+import { PaymentConfiremNoComponent } from './components/payment-confirem-no/payment-confirem-no.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
@@ -10,7 +11,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { VisualsService } from './services/visuals.service';
 import { VisualsComponent } from './components/visuals/visuals.component';
-import { PaymentConfiremComponent } from './components/payment-confirem/payment-confirem.component';
+import { PaymentConfiremYesComponent } from './components/payment-confirem-yes/payment-confirem-yes.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
@@ -18,8 +19,8 @@ const routes: Routes = [
   {path:"about-us",component:AboutUsComponent},
   {path:"fatawy",component:FatawyComponent},
   {path:"payment",component:PaymentComponent},
-  {path:"payment-confirm",component:PaymentConfiremComponent},
-  {path:"payment-confirm/:id",component:PaymentConfiremComponent},
+  {path:"payment-confirm-yes",component:PaymentConfiremYesComponent},
+  {path:"payment-confirm-no",component:PaymentConfiremNoComponent},
   {path:"products",component:ProductsComponent},
   {path:"sounds",component:SoundsComponent},
   {path:"visuals",component:VisualsComponent},

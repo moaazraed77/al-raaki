@@ -32,7 +32,8 @@ import { StoreModule } from '@ngrx/store';
 import { cartReducer } from './store/cart.reducer';
 import { AuthGatewayInterceptor } from './Modal/auth-gateway.interceptor';
 import { GatewayInterceptor } from './services/interceptors/gateway.interceptor';
-import { PaymentConfiremComponent } from './components/payment-confirem/payment-confirem.component';
+import { PaymentConfiremYesComponent } from './components/payment-confirem-yes/payment-confirem-yes.component';
+import { PaymentConfiremNoComponent } from './components/payment-confirem-no/payment-confirem-no.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { PaymentConfiremComponent } from './components/payment-confirem/payment-
     EditProductLinkPipe,
     PaymentComponent,
     VisualsComponent,
-    PaymentConfiremComponent,
+    PaymentConfiremYesComponent,
+    PaymentConfiremNoComponent,
   ],
   imports: [
     BrowserModule,

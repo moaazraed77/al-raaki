@@ -2,6 +2,7 @@ export interface order{
     id:number,
     products:orderProducts[]
     total:number,
+    address:any
 }
 
 export interface orderProducts{
@@ -9,4 +10,16 @@ export interface orderProducts{
     "description": string,
     "price": number,
     "quantity": number
+}
+
+
+export interface address{
+    name: string,
+    phone: string,
+    country: string,
+    area: string,
+    peice: string,
+    gadah: string,
+    street: string,
+    home: string,
 }

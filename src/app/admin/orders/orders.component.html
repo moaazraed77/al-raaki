@@ -1,7 +1,8 @@
 <div class="col-12 d-flex justify-content-start flex-wrap">
     <div class="col-sm-4 p-1" *ngFor="let item of orders">
         <div class="card p-1">
-            <p>"id" : {{item.id}}</p>
+                <h6 class="text-success text-center text-capitalize"> Order Details</h6>
+                <p>"id" : {{item.id}}</p>
             <div *ngFor="let temp of item.products">
                 <p>"name" : {{temp.name}}</p>
                 <p>"description" : {{temp.description}}</p>
@@ -10,7 +11,19 @@
                 <hr>
             </div>
             <p> "total" : {{item.total}}</p>
-            <div class="text-center">
+            <div>
+                <h6 class="text-warning text-center text-capitalize"> customer data</h6>
+                <p>"name" : {{item.address.name}}</p>
+                <p>"phone" : {{item.address.phone}}</p>
+                <p>"country" : {{item.address.country}}</p>
+                <p>"area" : {{item.address.area}}</p>
+                <p>"peice" : {{item.address.peice}}</p>
+                <p>"gadah" : {{item.address.gadah}}</p>
+                <p>"street" : {{item.address.street}}</p>
+                <p>"home" : {{item.address.home}}</p>
+            </div>
+                <hr>
+                <div class="text-center">
                 <button class="btn btn-danger" (click)="del(item)">delete</button>
             </div>
         </div>
