@@ -12,8 +12,9 @@ export class UpaymentService {
   constructor(private http: HttpClient) { }
 
   // ---------------------------  payment gateway ---------------------------
-
-  private apiUrl = 'https://uapi.upayments.com/api/v1/charge'; // Replace with the actual UPayments API URL
+ // for test
+  // private apiUrl = 'https://sandboxapi.upayments.com/api/v1/charge'; // Replace with the actual UPayments API URL
+  private apiUrl = 'https://uapi.upayments.com/api/v1/charge';
   createPayment(cost: number , products:productForPayment[],customerExtraData:string,name:string,phone:string): Observable<any> {
     const body = {
       "products": products,
@@ -36,8 +37,8 @@ export class UpaymentService {
         // "email": "kakde.dharmendra@upayments.com",
         "mobile": phone
       },
-      "returnUrl": "https://alroqya-q8.com/#/payment-confirm-yes/",
-      "cancelUrl": "https://alroqya-q8.com/#/payment-confirm-no/",
+      "returnUrl": "https://alroqya-q8.com/#/payment-confirm-yes",
+      "cancelUrl": "https://alroqya-q8.com/#/payment-confirm-no",
       "notificationUrl": "https://webhook.site/d7c6e1c8-b98b-4f77-8b51-b487540df336",
       "customerExtraData": customerExtraData
     }

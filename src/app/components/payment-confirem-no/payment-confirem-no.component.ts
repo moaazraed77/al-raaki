@@ -25,6 +25,7 @@ export class PaymentConfiremNoComponent {
         let responseMsgSplitLength = url.url.split("/").length;
         let responseMsgSplit = url.url.replaceAll("%20", " ").split("/")[responseMsgSplitLength - 1].split("&");
         this.cart = JSON.parse(localStorage.getItem("products-cart")!) ? JSON.parse(localStorage.getItem("products-cart")!) : [];
+        // console.log(this.cart)
         for (const temp of responseMsgSplit) {
           this.confirem.push(temp.split("="))
           // if (temp.split("=")[0] == "result") {
@@ -42,6 +43,7 @@ export class PaymentConfiremNoComponent {
           //   }
           // }
         }
+      // paymentServ.postSiteOrder(this.confirmMsg)
       }
     })
   }
