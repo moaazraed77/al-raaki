@@ -18,6 +18,7 @@ export class OrdersComponent implements OnInit {
       for (const key in data) {
         this.orders.push(data[key])
       }
+      this.orders.reverse()
     })
   }
 

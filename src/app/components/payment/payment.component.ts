@@ -36,7 +36,7 @@ export class PaymentComponent {
     phone: ["", Validators.required],
     country: ["", Validators.required],
     area: ["", Validators.required],
-    peice: ["", Validators.required],
+    block: ["", Validators.required],
     gadah: [""],
     street: ["", Validators.required],
     home: ["", Validators.required],
@@ -120,7 +120,7 @@ export class PaymentComponent {
 \n`;
       }
     }
-    this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي هذه المنتجات\n${msg}\nالسعر الكلي شامل خدمة التوصيل: ${this.totalCost} د.ك\nالعنوان \nدولة : ${this.address.value.country}\nمنطقة : ${this.address.value.area}\nالقطعة : ${this.address.value.peice}\nالجاده :  ${this.address.value.gadah}\nشارع : ${this.address.value.street}\nمنزل :  ${this.address.value.home}\nرقم الهاتف : ${this.address.value.phone}`
+    this.whatsappDataLinkMsg = `مرحبا اريد الحصول علي هذه المنتجات\n${msg}\nالسعر الكلي شامل خدمة التوصيل: ${this.totalCost} د.ك\nالعنوان \nدولة : ${this.address.value.country}\nمنطقة : ${this.address.value.area}\nالقطعة : ${this.address.value.block}\nالجاده :  ${this.address.value.gadah}\nشارع : ${this.address.value.street}\nمنزل :  ${this.address.value.home}\nرقم الهاتف : ${this.address.value.phone}`
     for (const item of this.whatsappDataLink) {
       products.push({
         "name": item.productsTitle,
@@ -130,6 +130,7 @@ export class PaymentComponent {
       })
     }
 
+    this.totalCost=1;
     this.paymentServ.createPayment(this.totalCost, products, this.whatsappDataLinkMsg, this.address.value.name!, this.address.value.phone!).subscribe(result => {
       // window.open(result.data.link)
       order.products = products;
@@ -143,7 +144,7 @@ export class PaymentComponent {
         phone: "",
         country: "",
         area: "",
-        peice: "",
+        block: "",
         gadah: "",
         street: "",
         home: "",

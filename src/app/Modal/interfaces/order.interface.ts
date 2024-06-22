@@ -18,7 +18,7 @@ export interface address{
     phone: string,
     country: string,
     area: string,
-    peice: string,
+    block: string,
     gadah: string,
     street: string,
     home: string,

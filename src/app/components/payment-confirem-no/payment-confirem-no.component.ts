@@ -43,7 +43,7 @@ export class PaymentConfiremNoComponent {
           //   }
           // }
         }
-      // paymentServ.postSiteOrder(this.confirmMsg)
+      paymentServ.postSiteOrder(this.confirmMsg)
       }
     })
   }
