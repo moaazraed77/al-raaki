@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, Signal, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { product, productForPayment } from '../Modal/interfaces/product.interface';
-import { order } from '../Modal/interfaces/order.interface';
 
 @Injectable({
   providedIn: 'root'

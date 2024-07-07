@@ -2,7 +2,8 @@ export interface order{
     id:number,
     products:orderProducts[]
     total:number,
-    address:any
+    address:any,
+    buyMsg:string
 }
 
 export interface orderProducts{
@@ -12,10 +13,10 @@ export interface orderProducts{
     "quantity": number
 }
 
-
 export interface address{
     name: string,
     phone: string,
+    email: string,
     country: string,
     area: string,
     block: string,
